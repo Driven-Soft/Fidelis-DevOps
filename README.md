@@ -1,10 +1,5 @@
 # Fidelis
 
-## Equipe
-Henrique Cunha Torres, RM: 565119
-Max Hayashi Batista, RM: 563717
-Felipe Bezerra Beatriz, RM: 564723
-
 ## Descrição do Projeto
 
 O Fidelis é uma solução desenvolvida para auxiliar clínicas veterinárias no acompanhamento contínuo da saúde de animais de estimação, permitindo o gerenciamento de informações clínicas, consultas, vacinas, tratamentos e lembretes preventivos.
@@ -188,3 +183,10 @@ docker ps
 Os containers executados incluem:
 - API Fidelis
 - Banco de Dados H2
+
+## Equipe
+Henrique Cunha Torres, RM: 565119
+
+Max Hayashi Batista, RM: 563717
+
+Felipe Bezerra Beatriz, RM: 564723
