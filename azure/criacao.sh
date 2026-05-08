@@ -5,7 +5,7 @@
 # =========================================
 
 GRUPO=fidelis
-LOCATION=eastus
+LOCATION=brazilsouth
 USER=azureuser
 PASSWORD='Fidelis@2026'
 
@@ -14,7 +14,7 @@ VNET=vnet-$GRUPO
 SUBNET=subnet-$GRUPO
 NSG=nsg-$GRUPO
 VM=vm-$GRUPO
-VMSIZE=Standard_B1ms
+VMSIZE=Standard_E2s_v3
 
 # =========================================
 # LOGIN AZURE
