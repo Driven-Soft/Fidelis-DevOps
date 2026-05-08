@@ -121,7 +121,40 @@ Esse script realiza:
 
 ---
 
-### 6. Executar a aplicação com Docker
+### 6. Obter IP público da Máquina Virtual
+
+```bash
+az vm show \
+  --resource-group rg-fidelis \
+  --name vm-fidelis \
+  -d \
+  --query publicIps \
+  -o tsv
+```
+
+---
+
+### 7. Acessar a VM via SSH
+
+```bash
+ssh azureuser@IP_DA_VM
+```
+
+Exemplo:
+
+```bash
+ssh azureuser@20.xxx.xxx.xxx
+```
+
+Senha padrão definida no script:
+
+```text
+Fidelis@2026
+```
+
+---
+
+### 8. Executar a aplicação com Docker
 
 ```bash
 docker compose up -d
@@ -129,13 +162,15 @@ docker compose up -d
 
 ---
 
-### 7. Remover infraestrutura da Azure
+### 9. Remover infraestrutura da Azure
 
 ```bash
 ./azure/remocao.sh
 ```
 
 Esse script remove todos os recursos criados na Azure.
+
+---
 
 ## Infraestrutura Azure
 
