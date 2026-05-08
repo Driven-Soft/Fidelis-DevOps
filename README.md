@@ -75,7 +75,7 @@ Antes de iniciar, é necessário possuir:
 ### 1. Clonar o repositório
 
 ```bash
-git clone https://github.com/SEU-USUARIO/Fidelis-DevOps.git
+git clone https://github.com/Driven-Soft/Fidelis-DevOps.git
 ```
 
 ---
