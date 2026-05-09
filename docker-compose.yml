@@ -1,0 +1,29 @@
+version: '3.9'
+
+services:
+
+  fidelis-api:
+    image: nginx
+    container_name: fidelis-api
+    ports:
+      - "8080:80"
+    restart: always
+
+  fidelis-h2:
+    image: oscarfonts/h2
+    container_name: fidelis-h2
+
+    ports:
+      - "9090:81"
+      - "1521:1521"
+
+    environment:
+      H2_OPTIONS: "-ifNotExists"
+
+    volumes:
+      - h2_data:/opt/h2-data
+
+    restart: always
+
+volumes:
+  h2_data:
