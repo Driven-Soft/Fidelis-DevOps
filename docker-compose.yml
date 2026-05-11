@@ -19,8 +19,6 @@ services:
 
     environment:
       H2_OPTIONS: "-ifNotExists"
-      SPRING_H2_CONSOLE_ENABLED: "true"
-      SPRING_H2_CONSOLE_SETTINGS_WEB_ALLOW_OTHERS: "true"
 
     volumes:
       - h2_data:/opt/h2-data
