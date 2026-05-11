@@ -161,7 +161,9 @@ Fidelis@2026
 
 ### 8. Clonar repositório dentro da VM
 
-```git clone https://github.com/Driven-Soft/Fidelis-DevOps.git```
+```bash
+git clone https://github.com/Driven-Soft/Fidelis-DevOps.git
+```
 
 ---
 
