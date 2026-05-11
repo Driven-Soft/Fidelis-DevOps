@@ -159,7 +159,13 @@ Fidelis@2026
 
 ---
 
-### 8. Executar a aplicação com Docker
+### 8. Clonar repositório dentro da VM
+
+```git clone https://github.com/Driven-Soft/Fidelis-DevOps.git```
+
+---
+
+### 9. Executar a aplicação com Docker
 
 ```bash
 docker compose up -d
@@ -167,7 +173,7 @@ docker compose up -d
 
 ---
 
-### 9. Remover infraestrutura da Azure
+### 10. Remover infraestrutura da Azure
 
 ```bash
 ./azure/remocao.sh
