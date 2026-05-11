@@ -146,6 +146,11 @@ Exemplo:
 ssh azureuser@20.xxx.xxx.xxx
 ```
 
+Are you sure you want to continue connecting (yes/no/[fingerprint])?
+```
+yes
+```
+
 Senha padrão definida no script:
 
 ```text
