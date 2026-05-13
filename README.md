@@ -65,7 +65,6 @@ O desenho detalhado da arquitetura será disponibilizado na pasta `/docs`.
 Antes de iniciar, é necessário possuir:
 
 - Docker instalado
-- Docker Compose instalado
 - Azure CLI instalada
 - Conta Microsoft Azure ativa
 - Git instalado
@@ -98,6 +97,8 @@ az login
 
 ### 4. Conceder permissão de execução aos scripts
 
+Em ambientes Linux pode ser necessário conceder permissão de execução aos scripts.
+- Caso esteja utilizando Linux:
 ```bash
 chmod +x azure/criacao.sh
 chmod +x azure/remocao.sh
