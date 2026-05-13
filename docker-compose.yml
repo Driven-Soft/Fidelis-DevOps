@@ -9,21 +9,20 @@ services:
       - "8080:80"
     restart: always
 
-  fidelis-h2:
-    image: oscarfonts/h2
-    container_name: fidelis-h2
+  fidelis-oracle:
+    image: gvenzl/oracle-xe
+    container_name: fidelis-oracle
 
     ports:
-      - "9090:81"
       - "1521:1521"
 
     environment:
-      H2_OPTIONS: "-ifNotExists"
+      ORACLE_PASSWORD: fidelis
 
     volumes:
-      - h2_data:/opt/h2-data
+      - oracle_data:/opt/oracle/oradata
 
     restart: always
 
 volumes:
-  h2_data:
+  oracle_data:
