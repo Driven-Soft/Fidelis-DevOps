@@ -24,14 +24,14 @@ A solução foi arquitetada utilizando infraestrutura em nuvem na Microsoft Azur
 
 Fluxo macro da arquitetura:
 
-Usuário → API Fidelis → Banco H2 → Containers Docker → VM Linux Azure
+Usuário → API Fidelis → Banco Oracle → Containers Docker → VM Linux Azure
 
 O desenho detalhado da arquitetura será disponibilizado na pasta `/docs`.
 
 ## Tecnologias Utilizadas
 
 - Java / Spring Boot
-- Banco de Dados H2
+- Banco de Dados Oracle
 - Docker
 - Docker Compose
 - Microsoft Azure
@@ -211,7 +211,7 @@ Os scripts realizam automaticamente:
 Estrutura criada:
 - VM Ubuntu Server
 - Containers Docker
-- Banco H2 conteinerizado
+- Banco Oracle conteinerizado
 - API Fidelis conteinerizada
 
 Scripts disponíveis:
@@ -238,7 +238,7 @@ docker ps
 
 Os containers executados incluem:
 - API Fidelis
-- Banco de Dados H2
+- Banco de Dados Oracle
 
 ## Equipe
 Henrique Cunha Torres, RM: 565119
