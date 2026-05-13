@@ -22,9 +22,11 @@ O projeto foi desenvolvido como parte do Challenge FIAP, integrando conceitos de
 
 A solução foi arquitetada utilizando infraestrutura em nuvem na Microsoft Azure, com conteinerização via Docker.
 
+O banco Oracle utiliza volume nomeado Docker para persistência de dados, garantindo que as informações permaneçam armazenadas mesmo após reinicialização ou remoção dos containers.
+
 Fluxo macro da arquitetura:
 
-Usuário → API Fidelis → Banco Oracle → Containers Docker → VM Linux Azure
+Usuário → VM Azure → Containers Docker → API Fidelis → Banco Oracle
 
 O desenho detalhado da arquitetura será disponibilizado na pasta `/docs`.
 
@@ -95,7 +97,7 @@ az login
 
 ---
 
-### 4. Conceder permissão de execução aos scripts
+### 4. Conceder permissão de execução aos scripts (P/ LINUX)
 
 Em ambientes Linux pode ser necessário conceder permissão de execução aos scripts.
 - Caso esteja utilizando Linux:
@@ -117,7 +119,7 @@ Esse script realiza:
 - Criação da VNet e Subnet
 - Criação do NSG e regras de firewall
 - Provisionamento da Máquina Virtual Linux
-- Instalação do Docker
+- Instalação do Docker (os containers são executados em background utilizando o parâmetro -d do Docker Compose)
 - Instalação do Git e Nano
 
 ---
@@ -190,8 +192,7 @@ docker compose up -d
 ./azure/remocao.sh
 ```
 
-Esse script remove todos os recursos criados na Azure.
-
+Esse script remove todos os recursos criados na Azure, e deve ser executado no ambiente local utilizado para provisionar a infraestrutura Azure.
 ---
 
 ## Infraestrutura Azure
