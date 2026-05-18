@@ -193,6 +193,7 @@ docker compose up -d
 ```
 
 Esse script remove todos os recursos criados na Azure, e deve ser executado no ambiente local utilizado para provisionar a infraestrutura Azure.
+
 ---
 
 ## Infraestrutura Azure
