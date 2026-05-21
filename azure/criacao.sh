@@ -83,16 +83,6 @@ az network nsg rule create \
   --destination-port-range 8080 \
   --access Allow
 
-# H2 Console (opcional)
-az network nsg rule create \
-  --resource-group $RG \
-  --nsg-name $NSG \
-  --name allow-9090 \
-  --protocol Tcp \
-  --priority 1003 \
-  --destination-port-range 9090 \
-  --access Allow
-
 # =========================================
 # 5. ASSOCIAR NSG À SUBNET
 # =========================================

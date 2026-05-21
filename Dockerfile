@@ -1,13 +1,19 @@
-FROM eclipse-temurin:17
+FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 
-WORKDIR /app
+WORKDIR /src
 
 COPY . .
 
-RUN chmod +x mvnw
+RUN dotnet publish Fidelis.Api/Fidelis.Api.csproj \
+-c Release \
+-o /app/publish
 
-RUN ./mvnw clean package -DskipTests
+FROM mcr.microsoft.com/dotnet/aspnet:8.0
+
+WORKDIR /app
+
+COPY --from=build /app/publish .
 
 EXPOSE 8080
 
-CMD ["java", "-jar", "target/fidelis-api-0.0.1-SNAPSHOT.jar"]
+ENTRYPOINT ["dotnet", "Fidelis.Api.dll"]
