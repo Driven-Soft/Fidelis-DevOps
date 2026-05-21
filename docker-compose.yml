@@ -32,6 +32,9 @@ services:
     depends_on:
       - fidelis-oracle
 
+    command:
+      sh -c "sleep 40 && dotnet Fidelis.Api.ddl"
+
     restart: always
 
 volumes:
