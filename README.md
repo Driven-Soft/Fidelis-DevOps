@@ -32,7 +32,7 @@ O desenho detalhado da arquitetura será disponibilizado na pasta `/docs`.
 
 ## Tecnologias Utilizadas
 
-- Java / Spring Boot
+- C# / .NET
 - Banco de Dados Oracle
 - Docker
 - Docker Compose
@@ -186,7 +186,23 @@ docker compose up -d
 
 ---
 
-### 11. Remover infraestrutura da Azure
+### 11. Testar endpoints (Swagger pelo navegador ou Postman)
+
+Acessar no navegador:
+```
+http://IP_DA_VM:8080/swagger
+```
+ou:
+# Postman
+```
+http://IP_DA_VM:8080/pets
+```
+
+E testar endpoints (GET, POST, PUT, DELETE, etc)
+
+---
+
+### 12. Remover infraestrutura da Azure
 
 ```bash
 ./azure/remocao.sh
