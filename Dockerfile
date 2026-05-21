@@ -14,6 +14,10 @@ WORKDIR /app
 
 COPY --from=build /app/publish .
 
+RUN adduser --disabled-password appuser
+
+USER appuser
+
 EXPOSE 8080
 
 ENTRYPOINT ["dotnet", "Fidelis.Api.dll"]

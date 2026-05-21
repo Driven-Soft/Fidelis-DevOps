@@ -27,8 +27,7 @@ services:
 
     environment:
       ASPNETCORE_URLS: http://+:8080
-
-      ConnectionStrings__OracleConnection: User Id=system;Password=fidelis;Data Source=fidelis-oracle:1521/XEPDB1;
+      ConnectionStrings__OracleConnection: Data Source=fidelis-oracle:1521/XEPDB1;User Id=system;Password=fidelis;
 
     depends_on:
       - fidelis-oracle
