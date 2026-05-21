@@ -1,6 +1,9 @@
 using Fidelis.Api.Exceptions;
 using Fidelis.Api.Extensions;
 
+using Fidelis.Infrastructure.Persistence;
+using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
@@ -21,5 +24,12 @@ app.UseHttpsRedirection();
 app.UseExceptionHandler();
 app.UseAuthorization();
 app.MapControllers();
+
+using (var scope = app.Services.CreateScope())
+{
+    var db = scope.ServiceProvider.GetRequiredService<FidelisContext>();
+
+    db.Database.EnsureCreated();
+}
 
 app.Run();
