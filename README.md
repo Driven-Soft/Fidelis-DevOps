@@ -186,7 +186,9 @@ docker compose up -d
 
 ---
 
-### 11. Testar endpoints (Swagger pelo navegador ou Postman)
+### 11. Aguardar um tempo e testar endpoints (Swagger pelo navegador ou Postman)
+
+Após executar a aplicação com Docker, aguarde por volta de 1-2 minuto(s) para acessar e testar a API no navegador usando Swagger.
 
 Acessar no navegador:
 ```
