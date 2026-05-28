@@ -33,7 +33,7 @@ services:
       - fidelis-oracle
 
     command:
-      sh -c "sleep 40 && dotnet Fidelis.Api.ddl"
+      sh -c "sleep 40 && dotnet Fidelis.Api.dll"
 
     restart: always
 
