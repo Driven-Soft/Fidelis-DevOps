@@ -3,7 +3,8 @@ version: '3.9'
 services:
 
   fidelis-mysql:
-    image: mysql:8.0
+    build: .
+    
     container_name: fidelis-mysql
 
     ports:
