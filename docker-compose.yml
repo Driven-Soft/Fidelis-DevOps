@@ -1,9 +1,9 @@
-version: '3.9'
-
 services:
 
   fidelis-mysql:
-    build: .
+    build:
+      context: .
+      dockerfile: docker/database/Dockerfile
     
     container_name: fidelis-mysql
 
@@ -13,8 +13,8 @@ services:
     environment:
       MYSQL_DATABASE: fidelis
       MYSQL_USER: fidelis
-      MYSQL_PASSWORD: fidelis
-      MYSQL_ROOT_PASSWORD: fidelis
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+      MYSQL_ROOT_PASSWORD: ${MYSQL_PASSWORD}
 
     volumes:
       - mysql_data:/var/lib/mysql
@@ -22,7 +22,9 @@ services:
     restart: always
 
   fidelis-api:
-    build: .
+    build:
+      context: .
+      dockerfile: docker/app/Dockerfile
 
     container_name: fidelis-api
 
@@ -31,7 +33,7 @@ services:
 
     environment:
       ASPNETCORE_URLS: http://+:8080
-      ConnectionStrings__FidelisMySql: Server=fidelis-mysql;Port=3306;Database=fidelis;User ID=fidelis;Password=fidelis;
+      ConnectionStrings__FidelisMySql: Server=fidelis-mysql;Port=3306;Database=fidelis;User ID=fidelis;Password=${MYSQL_PASSWORD};
 
     depends_on:
       - fidelis-mysql

@@ -20,241 +20,152 @@ O projeto foi desenvolvido como parte do Challenge FIAP, integrando conceitos de
 
 ## Arquitetura da Solução
 
-A solução foi arquitetada utilizando infraestrutura em nuvem na Microsoft Azure, com conteinerização via Docker.
+A solução utiliza serviços gerenciados de containers da Microsoft Azure. As imagens da API e do MySQL são armazenadas no Azure Container Registry (ACR) e executadas no Azure Container Instances (ACI), sem necessidade de uma Máquina Virtual para hospedar o Docker.
 
-O banco MySQL utiliza volume nomeado Docker para persistência de dados, garantindo que as informações permaneçam armazenadas mesmo após reinicialização ou remoção dos containers.
-
-Fluxo macro da arquitetura:
-
-Usuário → VM Azure → Containers Docker → API Fidelis → Banco MySQL
-
-O desenho detalhado da arquitetura será disponibilizado na pasta `/docs`.
-
-## Tecnologias Utilizadas
-
-- C# / .NET
-- Banco de Dados MySQL
-- Docker
-- Docker Compose
-- Microsoft Azure
-- Azure CLI
-- GitHub
-- Linux Ubuntu Server
-
-## Rotas da API
-
-### Pets
-
-| Método | Rota | Descrição |
-|---|---|---|
-| GET | /pets | Lista todos os pets |
-| GET | /pets/{id} | Busca pet por ID |
-| POST | /pets | Cadastra novo pet |
-| PUT | /pets/{id} | Atualiza pet |
-| DELETE | /pets/{id} | Remove pet |
-
-### Consultas
-
-| Método | Rota | Descrição |
-|---|---|---|
-| GET | /consultas | Lista consultas |
-| POST | /consultas | Agenda consulta |
+O MySQL utiliza um Azure File Share montado no ACI em `/var/lib/mysql`, garantindo persistência dos dados quando a instância do container é recriada. As credenciais são fornecidas por variáveis de ambiente e não ficam armazenadas nos scripts versionados.
 
 ## Como Executar o Projeto (How To)
 
 ### Pré-requisitos
 
-Antes de iniciar, é necessário possuir:
-
-- Docker instalado
+- Docker instalado e em execução
 - Azure CLI instalada
-- Conta Microsoft Azure ativa
-- Git instalado
+- Conta Azure autenticada e com permissão para criar ACR, Storage Account e ACI
+- Git e Bash, por exemplo Git Bash ou WSL
 
----
-
-### 1. Clonar o repositório
+### 1. Preparar o projeto
 
 ```bash
 git clone https://github.com/Driven-Soft/Fidelis-DevOps.git
-```
-
----
-
-### 2. Acessar a pasta do projeto
-
-```bash
 cd Fidelis-DevOps
-```
-
----
-
-### 3. Realizar login na Azure
-
-```bash
 az login
+cp .env.example .env
 ```
 
----
+Edite `.env` e informe a senha do MySQL:
 
-### 4. Conceder permissão de execução aos scripts (P/ LINUX)
-
-Em ambientes Linux pode ser necessário conceder permissão de execução aos scripts.
-- Caso esteja utilizando Linux:
-```bash
-chmod +x azure/criacao.sh
-chmod +x azure/remocao.sh
+```dotenv
+MYSQL_PASSWORD=sua_senha
 ```
 
----
+O `.env` é ignorado pelo Git. Não publique esse arquivo.
 
-### 5. Executar criação da infraestrutura na Azure
+No Linux, Git Bash ou WSL, conceda permissão aos scripts:
 
 ```bash
-./azure/criacao.sh
+chmod +x azure/*.sh
 ```
 
-Esse script realiza:
-- Criação do Resource Group
-- Criação da VNet e Subnet
-- Criação do NSG e regras de firewall
-- Provisionamento da Máquina Virtual Linux
-- Instalação do Docker (os containers são executados em background utilizando o parâmetro -d do Docker Compose)
-- Instalação do Git e Nano
-
----
-
-### 6. Obter IP público da Máquina Virtual
+### 2. Criar a infraestrutura base
 
 ```bash
-az vm show \
-  --resource-group rg-fidelis \
-  --name vm-fidelis \
-  -d \
-  --query publicIps \
-  -o tsv
+bash azure/01_criacao_infra.sh
 ```
 
----
+O script cria ou reutiliza o Resource Group, o ACR, o Storage Account e o Azure File Share usado para persistir o MySQL.
 
-### 7. Acessar a VM via SSH
+### 3. Construir e publicar as imagens
 
 ```bash
-ssh azureuser@IP_DA_VM
+bash azure/02_push_imagens.sh
 ```
 
-Exemplo:
+As imagens da API e do MySQL são construídas pelos Dockerfiles em [docker/app/Dockerfile](docker/app/Dockerfile) e [docker/database/Dockerfile](docker/database/Dockerfile), depois são enviadas ao ACR.
+
+### 4. Criar o ACI do MySQL
 
 ```bash
-ssh azureuser@20.xxx.xxx.xxx
+bash azure/03_deploy_database.sh
 ```
 
-Are you sure you want to continue connecting (yes/no/[fingerprint])?
-```
-yes
+O MySQL é executado no ACI com DNS público e Azure File Share montado em `/var/lib/mysql`. Para consultar o estado e o FQDN:
+
+```bash
+az container show \
+  --resource-group rg-rm564723-fidelis-challenge \
+  --name rm564723-fidelis-mysql \
+  --query "{Status:instanceView.state,IP:ipAddress.ip,FQDN:ipAddress.fqdn}" \
+  --output table
 ```
 
-Senha padrão definida no script:
+Logs do MySQL:
+
+```bash
+az container logs --resource-group rg-rm564723-fidelis-challenge --name rm564723-fidelis-mysql
+```
+
+### 5. Criar o ACI da API
+
+```bash
+bash azure/04_deploy_api.sh
+```
+
+O script recupera o FQDN do MySQL e injeta a connection string como variável segura. Para obter o FQDN da API:
+
+```bash
+az container show \
+  --resource-group rg-rm564723-fidelis-challenge \
+  --name rm564723-fidelis-api \
+  --query ipAddress.fqdn \
+  --output tsv
+```
+
+Acesse no navegador:
 
 ```text
-Fidelis@2026
+http://FQDN_DA_API:8080/swagger
 ```
 
----
-
-### 8. Clonar repositório dentro da VM
+Logs da API:
 
 ```bash
-git clone https://github.com/Driven-Soft/Fidelis-DevOps.git
+az container logs --resource-group rg-rm564723-fidelis-challenge --name rm564723-fidelis-api
 ```
 
----
+### 6. Executar localmente com Docker Compose
 
-### 9. Acessar pasta do repositório
-
-```bash
-cd Fidelis-DevOps
-```
-
----
-
-### 10. Executar a aplicação com Docker
-
-```bash
-docker compose up -d
-```
-
----
-
-### 11. Aguardar um tempo e testar endpoints (Swagger pelo navegador)
-
-Após executar a aplicação com Docker, aguarde por volta de 1-2 minuto(s) para acessar e testar a API no navegador usando Swagger.
-
-Acessar no navegador:
-```
-http://IP_DA_VM:8080/swagger
-```
-
-E testar endpoints (GET, POST, PUT, DELETE, etc)
-
----
-
-### 12. Remover infraestrutura da Azure
-
-```bash
-./azure/remocao.sh
-```
-
-Esse script remove todos os recursos criados na Azure, e deve ser executado no ambiente local utilizado para provisionar a infraestrutura Azure.
-
----
-
-## Infraestrutura Azure
-
-A infraestrutura do projeto Fidelis foi provisionada utilizando Microsoft Azure através de scripts automatizados com Azure CLI.
-
-Os scripts realizam automaticamente:
-
-- Criação do Resource Group
-- Criação da Virtual Network (VNet)
-- Criação da Subnet
-- Configuração do Network Security Group (NSG)
-- Liberação das portas necessárias
-- Provisionamento de Máquina Virtual Linux Ubuntu
-- Instalação automática do Docker
-- Instalação do Git e Nano
-
-Estrutura criada:
-- VM Ubuntu Server
-- Containers Docker
-- Banco MySQL conteinerizado
-- API Fidelis conteinerizada
-
-Scripts disponíveis:
-- azure/criacao.sh
-- azure/remocao.sh
-
-## Docker
-
-A aplicação Fidelis utiliza conteinerização com Docker para facilitar a execução da API e do banco de dados em ambientes isolados e reproduzíveis.
-
-Os containers são orquestrados utilizando Docker Compose.
-
-Arquivos utilizados:
-- Dockerfile
-- docker-compose.yml
-
-Principais comandos:
+Com o `.env` na raiz do projeto:
 
 ```bash
 docker compose build
 docker compose up -d
-docker ps
+docker compose ps
 ```
 
-Os containers executados incluem:
-- API Fidelis
-- Banco de Dados MySQL
+Swagger local: `http://localhost:8080/swagger`.
+
+Para parar os containers locais:
+
+```bash
+docker compose down
+```
+
+### 7. Remover a infraestrutura Azure
+
+```bash
+bash azure/05_remocao.sh
+```
+
+Esse script remove o Resource Group e todos os recursos associados. A exclusão é iniciada de forma assíncrona por causa do parâmetro `--no-wait`.
+
+## Infraestrutura Azure
+
+Os scripts em [azure](azure) automatizam o provisionamento e o deploy:
+
+- `00_config_geral.sh`: nomes, região, imagens e DNS
+- `01_criacao_infra.sh`: Resource Group, ACR, Storage Account e Azure File Share
+- `02_push_imagens.sh`: build e push das imagens para o ACR
+- `03_deploy_database.sh`: deploy do MySQL no ACI
+- `04_deploy_api.sh`: deploy da API no ACI
+- `05_remocao.sh`: remoção do Resource Group
+
+O ambiente Azure é composto por um ACR para armazenar as imagens, dois ACIs para executar API e MySQL e um Azure File Share para persistência do banco.
+
+## Docker
+
+Docker e Docker Compose são utilizados para execução local e para construir as imagens publicadas no ACR. Os arquivos principais são [docker-compose.yml](docker-compose.yml), [docker/app/Dockerfile](docker/app/Dockerfile) e [docker/database/Dockerfile](docker/database/Dockerfile).
+
+Os containers locais são a API Fidelis e o banco MySQL.
 
 ## Equipe
 Henrique Cunha Torres, RM: 565119
