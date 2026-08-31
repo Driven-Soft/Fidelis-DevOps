@@ -22,18 +22,18 @@ O projeto foi desenvolvido como parte do Challenge FIAP, integrando conceitos de
 
 A solução foi arquitetada utilizando infraestrutura em nuvem na Microsoft Azure, com conteinerização via Docker.
 
-O banco Oracle utiliza volume nomeado Docker para persistência de dados, garantindo que as informações permaneçam armazenadas mesmo após reinicialização ou remoção dos containers.
+O banco MySQL utiliza volume nomeado Docker para persistência de dados, garantindo que as informações permaneçam armazenadas mesmo após reinicialização ou remoção dos containers.
 
 Fluxo macro da arquitetura:
 
-Usuário → VM Azure → Containers Docker → API Fidelis → Banco Oracle
+Usuário → VM Azure → Containers Docker → API Fidelis → Banco MySQL
 
 O desenho detalhado da arquitetura será disponibilizado na pasta `/docs`.
 
 ## Tecnologias Utilizadas
 
 - C# / .NET
-- Banco de Dados Oracle
+- Banco de Dados MySQL
 - Docker
 - Docker Compose
 - Microsoft Azure
@@ -227,7 +227,7 @@ Os scripts realizam automaticamente:
 Estrutura criada:
 - VM Ubuntu Server
 - Containers Docker
-- Banco Oracle conteinerizado
+- Banco MySQL conteinerizado
 - API Fidelis conteinerizada
 
 Scripts disponíveis:
@@ -254,7 +254,7 @@ docker ps
 
 Os containers executados incluem:
 - API Fidelis
-- Banco de Dados Oracle
+- Banco de Dados MySQL
 
 ## Equipe
 Henrique Cunha Torres, RM: 565119

@@ -3,8 +3,8 @@ using System;
 using Fidelis.Infrastructure.Persistence;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using Oracle.EntityFrameworkCore.Metadata;
 
 #nullable disable
 
@@ -18,42 +18,42 @@ namespace Fidelis.Infrastructure.Migrations
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("ProductVersion", "9.0.14")
-                .HasAnnotation("Relational:MaxIdentifierLength", 128);
+                .HasAnnotation("Relational:MaxIdentifierLength", 64);
 
-            OracleModelBuilderExtensions.UseIdentityColumns(modelBuilder);
+            MySqlModelBuilderExtensions.AutoIncrementColumns(modelBuilder);
 
             modelBuilder.Entity("Fidelis.Domain.Entities.Clinica", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("NUMBER(10)");
+                        .HasColumnType("int");
 
-                    OraclePropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("Cnpj")
                         .IsRequired()
                         .HasMaxLength(18)
-                        .HasColumnType("NVARCHAR2(18)");
+                        .HasColumnType("varchar(18)");
 
                     b.Property<string>("Email")
                         .IsRequired()
                         .HasMaxLength(75)
-                        .HasColumnType("NVARCHAR2(75)");
+                        .HasColumnType("varchar(75)");
 
                     b.Property<string>("Endereco")
                         .IsRequired()
                         .HasMaxLength(255)
-                        .HasColumnType("NVARCHAR2(255)");
+                        .HasColumnType("varchar(255)");
 
                     b.Property<string>("Nome")
                         .IsRequired()
                         .HasMaxLength(100)
-                        .HasColumnType("NVARCHAR2(100)");
+                        .HasColumnType("varchar(100)");
 
                     b.Property<string>("Telefone")
                         .IsRequired()
                         .HasMaxLength(15)
-                        .HasColumnType("NVARCHAR2(15)");
+                        .HasColumnType("varchar(15)");
 
                     b.HasKey("Id");
 
@@ -64,19 +64,19 @@ namespace Fidelis.Infrastructure.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("NUMBER(10)");
+                        .HasColumnType("int");
 
-                    OraclePropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<DateTime>("Data")
-                        .HasColumnType("TIMESTAMP(7)");
+                        .HasColumnType("datetime(6)");
 
                     b.Property<string>("Descricao")
                         .IsRequired()
-                        .HasColumnType("NVARCHAR2(2000)");
+                        .HasColumnType("longtext");
 
                     b.Property<int>("PetId")
-                        .HasColumnType("NUMBER(10)");
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
@@ -89,32 +89,32 @@ namespace Fidelis.Infrastructure.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("NUMBER(10)");
+                        .HasColumnType("int");
 
-                    OraclePropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<DateTime>("DataHora")
-                        .HasColumnType("TIMESTAMP(7)");
+                        .HasColumnType("datetime(6)");
 
                     b.Property<DateTime?>("DataRetorno")
-                        .HasColumnType("TIMESTAMP(7)");
+                        .HasColumnType("datetime(6)");
 
                     b.Property<string>("Diagnostico")
-                        .HasColumnType("NVARCHAR2(2000)");
+                        .HasColumnType("longtext");
 
                     b.Property<string>("Observacoes")
-                        .HasColumnType("NVARCHAR2(2000)");
+                        .HasColumnType("longtext");
 
                     b.Property<int>("PetId")
-                        .HasColumnType("NUMBER(10)");
+                        .HasColumnType("int");
 
                     b.Property<string>("Tipo")
                         .IsRequired()
                         .HasMaxLength(50)
-                        .HasColumnType("NVARCHAR2(50)");
+                        .HasColumnType("varchar(50)");
 
                     b.Property<int>("VeterinarioId")
-                        .HasColumnType("NUMBER(10)");
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
@@ -129,27 +129,27 @@ namespace Fidelis.Infrastructure.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("NUMBER(10)");
+                        .HasColumnType("int");
 
-                    OraclePropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<int>("ConsultaId")
-                        .HasColumnType("NUMBER(10)");
+                        .HasColumnType("int");
 
                     b.Property<DateTime>("Data")
-                        .HasColumnType("TIMESTAMP(7)");
+                        .HasColumnType("datetime(6)");
 
                     b.Property<string>("Descricao")
                         .IsRequired()
-                        .HasColumnType("NVARCHAR2(2000)");
+                        .HasColumnType("longtext");
 
                     b.Property<string>("Resultado")
-                        .HasColumnType("NVARCHAR2(2000)");
+                        .HasColumnType("longtext");
 
                     b.Property<string>("Tipo")
                         .IsRequired()
                         .HasMaxLength(50)
-                        .HasColumnType("NVARCHAR2(50)");
+                        .HasColumnType("varchar(50)");
 
                     b.HasKey("Id");
 
@@ -162,22 +162,22 @@ namespace Fidelis.Infrastructure.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("NUMBER(10)");
+                        .HasColumnType("int");
 
-                    OraclePropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<DateTime>("DataMedicao")
-                        .HasColumnType("TIMESTAMP(7)");
+                        .HasColumnType("datetime(6)");
 
                     b.Property<string>("Observacao")
-                        .HasColumnType("NVARCHAR2(2000)");
+                        .HasColumnType("longtext");
 
                     b.Property<decimal>("PesoKg")
                         .HasPrecision(7, 2)
                         .HasColumnType("decimal(7,2)");
 
                     b.Property<int>("PetId")
-                        .HasColumnType("NUMBER(10)");
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
@@ -190,31 +190,31 @@ namespace Fidelis.Infrastructure.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("NUMBER(10)");
+                        .HasColumnType("int");
 
-                    OraclePropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<DateTime>("DataPrevista")
-                        .HasColumnType("TIMESTAMP(7)");
+                        .HasColumnType("datetime(6)");
 
                     b.Property<string>("Descricao")
                         .IsRequired()
-                        .HasColumnType("NVARCHAR2(2000)");
+                        .HasColumnType("longtext");
 
                     b.Property<int>("PetId")
-                        .HasColumnType("NUMBER(10)");
+                        .HasColumnType("int");
 
                     b.Property<string>("Status")
                         .IsRequired()
-                        .HasColumnType("NVARCHAR2(1)");
+                        .HasColumnType("varchar(1)");
 
                     b.Property<string>("Tipo")
                         .IsRequired()
                         .HasMaxLength(50)
-                        .HasColumnType("NVARCHAR2(50)");
+                        .HasColumnType("varchar(50)");
 
                     b.Property<int>("TutorId")
-                        .HasColumnType("NUMBER(10)");
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
@@ -229,21 +229,21 @@ namespace Fidelis.Infrastructure.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("NUMBER(10)");
+                        .HasColumnType("int");
 
-                    OraclePropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("Descricao")
                         .IsRequired()
-                        .HasColumnType("NVARCHAR2(2000)");
+                        .HasColumnType("longtext");
 
                     b.Property<string>("Nome")
                         .IsRequired()
                         .HasMaxLength(50)
-                        .HasColumnType("NVARCHAR2(50)");
+                        .HasColumnType("varchar(50)");
 
                     b.Property<int>("PrescricaoId")
-                        .HasColumnType("NUMBER(10)");
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
@@ -256,46 +256,46 @@ namespace Fidelis.Infrastructure.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("NUMBER(10)");
+                        .HasColumnType("int");
 
-                    OraclePropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<int?>("ClinicaId")
-                        .HasColumnType("NUMBER(10)");
+                        .HasColumnType("int");
 
                     b.Property<DateTime>("DataNascimento")
-                        .HasColumnType("TIMESTAMP(7)");
+                        .HasColumnType("datetime(6)");
 
                     b.Property<string>("Especie")
                         .IsRequired()
                         .HasMaxLength(20)
-                        .HasColumnType("NVARCHAR2(20)");
+                        .HasColumnType("varchar(20)");
 
                     b.Property<string>("FotoUrl")
                         .IsRequired()
                         .HasMaxLength(255)
-                        .HasColumnType("NVARCHAR2(255)");
+                        .HasColumnType("varchar(255)");
 
                     b.Property<string>("Nome")
                         .IsRequired()
                         .HasMaxLength(30)
-                        .HasColumnType("NVARCHAR2(30)");
+                        .HasColumnType("varchar(30)");
 
                     b.Property<string>("Raca")
                         .IsRequired()
                         .HasMaxLength(20)
-                        .HasColumnType("NVARCHAR2(20)");
+                        .HasColumnType("varchar(20)");
 
                     b.Property<string>("Sexo")
                         .IsRequired()
-                        .HasColumnType("NVARCHAR2(1)");
+                        .HasColumnType("varchar(1)");
 
                     b.Property<string>("Status")
                         .IsRequired()
-                        .HasColumnType("NVARCHAR2(1)");
+                        .HasColumnType("varchar(1)");
 
                     b.Property<int>("TutorId")
-                        .HasColumnType("NUMBER(10)");
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
@@ -310,28 +310,28 @@ namespace Fidelis.Infrastructure.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("NUMBER(10)");
+                        .HasColumnType("int");
 
-                    OraclePropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<int>("ConsultaId")
-                        .HasColumnType("NUMBER(10)");
+                        .HasColumnType("int");
 
                     b.Property<string>("Dosagem")
                         .IsRequired()
                         .HasMaxLength(50)
-                        .HasColumnType("NVARCHAR2(50)");
+                        .HasColumnType("varchar(50)");
 
                     b.Property<int>("DuracaoDias")
-                        .HasColumnType("NUMBER(10)");
+                        .HasColumnType("int");
 
                     b.Property<string>("Frequencia")
                         .IsRequired()
                         .HasMaxLength(50)
-                        .HasColumnType("NVARCHAR2(50)");
+                        .HasColumnType("varchar(50)");
 
                     b.Property<string>("Observacao")
-                        .HasColumnType("NVARCHAR2(2000)");
+                        .HasColumnType("longtext");
 
                     b.HasKey("Id");
 
@@ -344,24 +344,24 @@ namespace Fidelis.Infrastructure.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("NUMBER(10)");
+                        .HasColumnType("int");
 
-                    OraclePropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<DateTime>("DataRecomendacao")
-                        .HasColumnType("TIMESTAMP(7)");
+                        .HasColumnType("datetime(6)");
 
                     b.Property<string>("Descricao")
                         .IsRequired()
-                        .HasColumnType("NVARCHAR2(2000)");
+                        .HasColumnType("longtext");
 
                     b.Property<int>("PetId")
-                        .HasColumnType("NUMBER(10)");
+                        .HasColumnType("int");
 
                     b.Property<string>("Tipo")
                         .IsRequired()
                         .HasMaxLength(50)
-                        .HasColumnType("NVARCHAR2(50)");
+                        .HasColumnType("varchar(50)");
 
                     b.HasKey("Id");
 
@@ -374,42 +374,42 @@ namespace Fidelis.Infrastructure.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("NUMBER(10)");
+                        .HasColumnType("int");
 
-                    OraclePropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("Cpf")
                         .IsRequired()
                         .HasMaxLength(14)
-                        .HasColumnType("NVARCHAR2(14)");
+                        .HasColumnType("varchar(14)");
 
                     b.Property<DateTime>("DataCriacao")
-                        .HasColumnType("TIMESTAMP(7)");
+                        .HasColumnType("datetime(6)");
 
                     b.Property<string>("Email")
                         .IsRequired()
                         .HasMaxLength(75)
-                        .HasColumnType("NVARCHAR2(75)");
+                        .HasColumnType("varchar(75)");
 
                     b.Property<string>("Endereco")
                         .IsRequired()
                         .HasMaxLength(255)
-                        .HasColumnType("NVARCHAR2(255)");
+                        .HasColumnType("varchar(255)");
 
                     b.Property<string>("Nome")
                         .IsRequired()
                         .HasMaxLength(75)
-                        .HasColumnType("NVARCHAR2(75)");
+                        .HasColumnType("varchar(75)");
 
                     b.Property<string>("Senha")
                         .IsRequired()
                         .HasMaxLength(50)
-                        .HasColumnType("NVARCHAR2(50)");
+                        .HasColumnType("varchar(50)");
 
                     b.Property<string>("Telefone")
                         .IsRequired()
                         .HasMaxLength(15)
-                        .HasColumnType("NVARCHAR2(15)");
+                        .HasColumnType("varchar(15)");
 
                     b.HasKey("Id");
 
@@ -420,29 +420,29 @@ namespace Fidelis.Infrastructure.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("NUMBER(10)");
+                        .HasColumnType("int");
 
-                    OraclePropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<DateTime>("DataAplicacao")
-                        .HasColumnType("TIMESTAMP(7)");
+                        .HasColumnType("datetime(6)");
 
                     b.Property<DateTime>("DataProxima")
-                        .HasColumnType("TIMESTAMP(7)");
+                        .HasColumnType("datetime(6)");
 
                     b.Property<string>("Observacao")
-                        .HasColumnType("NVARCHAR2(2000)");
+                        .HasColumnType("longtext");
 
                     b.Property<int>("PetId")
-                        .HasColumnType("NUMBER(10)");
+                        .HasColumnType("int");
 
                     b.Property<string>("VacinaAplicada")
                         .IsRequired()
                         .HasMaxLength(50)
-                        .HasColumnType("NVARCHAR2(50)");
+                        .HasColumnType("varchar(50)");
 
                     b.Property<int>("VeterinarioId")
-                        .HasColumnType("NUMBER(10)");
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
@@ -457,26 +457,26 @@ namespace Fidelis.Infrastructure.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("NUMBER(10)");
+                        .HasColumnType("int");
 
-                    OraclePropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<DateTime>("DataAplicacao")
-                        .HasColumnType("TIMESTAMP(7)");
+                        .HasColumnType("datetime(6)");
 
                     b.Property<DateTime>("DataProxima")
-                        .HasColumnType("TIMESTAMP(7)");
+                        .HasColumnType("datetime(6)");
 
                     b.Property<int>("PetId")
-                        .HasColumnType("NUMBER(10)");
+                        .HasColumnType("int");
 
                     b.Property<string>("Produto")
                         .IsRequired()
                         .HasMaxLength(50)
-                        .HasColumnType("NVARCHAR2(50)");
+                        .HasColumnType("varchar(50)");
 
                     b.Property<int>("VeterinarioId")
-                        .HasColumnType("NUMBER(10)");
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
@@ -491,40 +491,40 @@ namespace Fidelis.Infrastructure.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("NUMBER(10)");
+                        .HasColumnType("int");
 
-                    OraclePropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<int>("ClinicaId")
-                        .HasColumnType("NUMBER(10)");
+                        .HasColumnType("int");
 
                     b.Property<string>("Crmv")
                         .IsRequired()
                         .HasMaxLength(13)
-                        .HasColumnType("NVARCHAR2(13)");
+                        .HasColumnType("varchar(13)");
 
                     b.Property<DateTime>("DataCriacao")
-                        .HasColumnType("TIMESTAMP(7)");
+                        .HasColumnType("datetime(6)");
 
                     b.Property<string>("Email")
                         .IsRequired()
                         .HasMaxLength(75)
-                        .HasColumnType("NVARCHAR2(75)");
+                        .HasColumnType("varchar(75)");
 
                     b.Property<string>("Especialidade")
                         .IsRequired()
                         .HasMaxLength(50)
-                        .HasColumnType("NVARCHAR2(50)");
+                        .HasColumnType("varchar(50)");
 
                     b.Property<string>("Nome")
                         .IsRequired()
                         .HasMaxLength(75)
-                        .HasColumnType("NVARCHAR2(75)");
+                        .HasColumnType("varchar(75)");
 
                     b.Property<string>("Senha")
                         .IsRequired()
                         .HasMaxLength(50)
-                        .HasColumnType("NVARCHAR2(50)");
+                        .HasColumnType("varchar(50)");
 
                     b.HasKey("Id");
 

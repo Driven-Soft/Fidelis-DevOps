@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Fidelis.Infrastructure")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+b7fb830f302d96ea8d170f78ff3f313fb95c5348")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+52e062d23f6889546f9d635137509f18e6a18899")]
 [assembly: System.Reflection.AssemblyProductAttribute("Fidelis.Infrastructure")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Fidelis.Infrastructure")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

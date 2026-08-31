@@ -1,0 +1,477 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Fidelis.Api</name>
+    </assembly>
+    <members>
+        <member name="M:Fidelis.Api.Controllers.ClinicaController.GetAll">
+            <summary>
+            Lista clinicas cadastradas.
+            </summary>
+        </member>
+        <member name="M:Fidelis.Api.Controllers.ClinicaController.GetById(System.Int32)">
+            <summary>
+            Busca uma clinica por id.
+            </summary>
+        </member>
+        <member name="M:Fidelis.Api.Controllers.ClinicaController.Create(Fidelis.Application.DTOs.ClinicaRequest)">
+            <summary>
+            Cria uma nova clinica.
+            </summary>
+        </member>
+        <member name="M:Fidelis.Api.Controllers.ClinicaController.Update(System.Int32,Fidelis.Application.DTOs.ClinicaRequest)">
+            <summary>
+            Atualiza uma clinica existente.
+            </summary>
+        </member>
+        <member name="M:Fidelis.Api.Controllers.ClinicaController.Patch(System.Int32,Fidelis.Application.DTOs.ClinicaPatchRequest)">
+            <summary>
+            Atualiza parcialmente uma clinica.
+            </summary>
+        </member>
+        <member name="M:Fidelis.Api.Controllers.ClinicaController.Delete(System.Int32)">
+            <summary>
+            Remove uma clinica por id.
+            </summary>
+        </member>
+        <member name="M:Fidelis.Api.Controllers.ComportamentoController.GetAll">
+            <summary>
+            Lista comportamentos cadastrados.
+            </summary>
+        </member>
+        <member name="M:Fidelis.Api.Controllers.ComportamentoController.GetById(System.Int32)">
+            <summary>
+            Busca um comportamento por id.
+            </summary>
+        </member>
+        <member name="M:Fidelis.Api.Controllers.ComportamentoController.Create(Fidelis.Application.DTOs.ComportamentoRequest)">
+            <summary>
+            Cria um novo comportamento.
+            </summary>
+        </member>
+        <member name="M:Fidelis.Api.Controllers.ComportamentoController.Update(System.Int32,Fidelis.Application.DTOs.ComportamentoRequest)">
+            <summary>
+            Atualiza um comportamento existente.
+            </summary>
+        </member>
+        <member name="M:Fidelis.Api.Controllers.ComportamentoController.Patch(System.Int32,Fidelis.Application.DTOs.ComportamentoPatchRequest)">
+            <summary>
+            Atualiza parcialmente um comportamento.
+            </summary>
+        </member>
+        <member name="M:Fidelis.Api.Controllers.ComportamentoController.Delete(System.Int32)">
+            <summary>
+            Remove um comportamento por id.
+            </summary>
+        </member>
+        <member name="M:Fidelis.Api.Controllers.ConsultaController.GetAll">
+            <summary>
+            Lista consultas cadastradas.
+            </summary>
+        </member>
+        <member name="M:Fidelis.Api.Controllers.ConsultaController.GetById(System.Int32)">
+            <summary>
+            Busca uma consulta por id.
+            </summary>
+        </member>
+        <member name="M:Fidelis.Api.Controllers.ConsultaController.Create(Fidelis.Application.DTOs.ConsultaRequest)">
+            <summary>
+            Cria uma nova consulta.
+            </summary>
+        </member>
+        <member name="M:Fidelis.Api.Controllers.ConsultaController.Update(System.Int32,Fidelis.Application.DTOs.ConsultaRequest)">
+            <summary>
+            Atualiza uma consulta existente.
+            </summary>
+        </member>
+        <member name="M:Fidelis.Api.Controllers.ConsultaController.Patch(System.Int32,Fidelis.Application.DTOs.ConsultaPatchRequest)">
+            <summary>
+            Atualiza parcialmente uma consulta.
+            </summary>
+        </member>
+        <member name="M:Fidelis.Api.Controllers.ConsultaController.Delete(System.Int32)">
+            <summary>
+            Remove uma consulta por id.
+            </summary>
+        </member>
+        <member name="M:Fidelis.Api.Controllers.ExameController.GetAll">
+            <summary>
+            Lista exames cadastrados.
+            </summary>
+        </member>
+        <member name="M:Fidelis.Api.Controllers.ExameController.GetById(System.Int32)">
+            <summary>
+            Busca um exame por id.
+            </summary>
+        </member>
+        <member name="M:Fidelis.Api.Controllers.ExameController.Create(Fidelis.Application.DTOs.ExameRequest)">
+            <summary>
+            Cria um novo exame.
+            </summary>
+        </member>
+        <member name="M:Fidelis.Api.Controllers.ExameController.Update(System.Int32,Fidelis.Application.DTOs.ExameRequest)">
+            <summary>
+            Atualiza um exame existente.
+            </summary>
+        </member>
+        <member name="M:Fidelis.Api.Controllers.ExameController.Patch(System.Int32,Fidelis.Application.DTOs.ExamePatchRequest)">
+            <summary>
+            Atualiza parcialmente um exame.
+            </summary>
+        </member>
+        <member name="M:Fidelis.Api.Controllers.ExameController.Delete(System.Int32)">
+            <summary>
+            Remove um exame por id.
+            </summary>
+        </member>
+        <member name="M:Fidelis.Api.Controllers.HistoricoPesoController.GetAll">
+            <summary>
+            Lista historicos de peso cadastrados.
+            </summary>
+        </member>
+        <member name="M:Fidelis.Api.Controllers.HistoricoPesoController.GetById(System.Int32)">
+            <summary>
+            Busca um historico de peso por id.
+            </summary>
+        </member>
+        <member name="M:Fidelis.Api.Controllers.HistoricoPesoController.Create(Fidelis.Application.DTOs.HistoricoPesoRequest)">
+            <summary>
+            Cria um novo historico de peso.
+            </summary>
+        </member>
+        <member name="M:Fidelis.Api.Controllers.HistoricoPesoController.Update(System.Int32,Fidelis.Application.DTOs.HistoricoPesoRequest)">
+            <summary>
+            Atualiza um historico de peso existente.
+            </summary>
+        </member>
+        <member name="M:Fidelis.Api.Controllers.HistoricoPesoController.Patch(System.Int32,Fidelis.Application.DTOs.HistoricoPesoPatchRequest)">
+            <summary>
+            Atualiza parcialmente um historico de peso.
+            </summary>
+        </member>
+        <member name="M:Fidelis.Api.Controllers.HistoricoPesoController.Delete(System.Int32)">
+            <summary>
+            Remove um historico de peso por id.
+            </summary>
+        </member>
+        <member name="M:Fidelis.Api.Controllers.LembreteController.GetAll">
+            <summary>
+            Lista lembretes cadastrados.
+            </summary>
+        </member>
+        <member name="M:Fidelis.Api.Controllers.LembreteController.GetById(System.Int32)">
+            <summary>
+            Busca um lembrete por id.
+            </summary>
+        </member>
+        <member name="M:Fidelis.Api.Controllers.LembreteController.Create(Fidelis.Application.DTOs.LembreteRequest)">
+            <summary>
+            Cria um novo lembrete.
+            </summary>
+        </member>
+        <member name="M:Fidelis.Api.Controllers.LembreteController.Update(System.Int32,Fidelis.Application.DTOs.LembreteRequest)">
+            <summary>
+            Atualiza um lembrete existente.
+            </summary>
+        </member>
+        <member name="M:Fidelis.Api.Controllers.LembreteController.Patch(System.Int32,Fidelis.Application.DTOs.LembretePatchRequest)">
+            <summary>
+            Atualiza parcialmente um lembrete.
+            </summary>
+        </member>
+        <member name="M:Fidelis.Api.Controllers.LembreteController.Delete(System.Int32)">
+            <summary>
+            Remove um lembrete por id.
+            </summary>
+        </member>
+        <member name="M:Fidelis.Api.Controllers.MedicamentoController.GetAll">
+            <summary>
+            Lista medicamentos cadastrados.
+            </summary>
+        </member>
+        <member name="M:Fidelis.Api.Controllers.MedicamentoController.GetById(System.Int32)">
+            <summary>
+            Busca um medicamento por id.
+            </summary>
+        </member>
+        <member name="M:Fidelis.Api.Controllers.MedicamentoController.Create(Fidelis.Application.DTOs.MedicamentoRequest)">
+            <summary>
+            Cria um novo medicamento.
+            </summary>
+        </member>
+        <member name="M:Fidelis.Api.Controllers.MedicamentoController.Update(System.Int32,Fidelis.Application.DTOs.MedicamentoRequest)">
+            <summary>
+            Atualiza um medicamento existente.
+            </summary>
+        </member>
+        <member name="M:Fidelis.Api.Controllers.MedicamentoController.Patch(System.Int32,Fidelis.Application.DTOs.MedicamentoPatchRequest)">
+            <summary>
+            Atualiza parcialmente um medicamento.
+            </summary>
+        </member>
+        <member name="M:Fidelis.Api.Controllers.MedicamentoController.Delete(System.Int32)">
+            <summary>
+            Remove um medicamento por id.
+            </summary>
+        </member>
+        <member name="M:Fidelis.Api.Controllers.PetController.GetAll">
+            <summary>
+            Lista pets cadastrados.
+            </summary>
+        </member>
+        <member name="M:Fidelis.Api.Controllers.PetController.GetById(System.Int32)">
+            <summary>
+            Busca um pet por id.
+            </summary>
+        </member>
+        <member name="M:Fidelis.Api.Controllers.PetController.Create(Fidelis.Application.DTOs.PetRequest)">
+            <summary>
+            Cria um novo pet.
+            </summary>
+        </member>
+        <member name="M:Fidelis.Api.Controllers.PetController.Update(System.Int32,Fidelis.Application.DTOs.PetRequest)">
+            <summary>
+            Atualiza um pet existente.
+            </summary>
+        </member>
+        <member name="M:Fidelis.Api.Controllers.PetController.Patch(System.Int32,Fidelis.Application.DTOs.PetPatchRequest)">
+            <summary>
+            Atualiza parcialmente um pet.
+            </summary>
+        </member>
+        <member name="M:Fidelis.Api.Controllers.PetController.Delete(System.Int32)">
+            <summary>
+            Remove um pet por id.
+            </summary>
+        </member>
+        <member name="M:Fidelis.Api.Controllers.PrescricaoController.GetAll">
+            <summary>
+            Lista prescricoes cadastradas.
+            </summary>
+        </member>
+        <member name="M:Fidelis.Api.Controllers.PrescricaoController.GetById(System.Int32)">
+            <summary>
+            Busca uma prescricao por id.
+            </summary>
+        </member>
+        <member name="M:Fidelis.Api.Controllers.PrescricaoController.Create(Fidelis.Application.DTOs.PrescricaoRequest)">
+            <summary>
+            Cria uma nova prescricao.
+            </summary>
+        </member>
+        <member name="M:Fidelis.Api.Controllers.PrescricaoController.Update(System.Int32,Fidelis.Application.DTOs.PrescricaoRequest)">
+            <summary>
+            Atualiza uma prescricao existente.
+            </summary>
+        </member>
+        <member name="M:Fidelis.Api.Controllers.PrescricaoController.Patch(System.Int32,Fidelis.Application.DTOs.PrescricaoPatchRequest)">
+            <summary>
+            Atualiza parcialmente uma prescricao.
+            </summary>
+        </member>
+        <member name="M:Fidelis.Api.Controllers.PrescricaoController.Delete(System.Int32)">
+            <summary>
+            Remove uma prescricao por id.
+            </summary>
+        </member>
+        <member name="M:Fidelis.Api.Controllers.RecomendacaoController.GetAll">
+            <summary>
+            Lista recomendacoes cadastradas.
+            </summary>
+        </member>
+        <member name="M:Fidelis.Api.Controllers.RecomendacaoController.GetById(System.Int32)">
+            <summary>
+            Busca uma recomendacao por id.
+            </summary>
+        </member>
+        <member name="M:Fidelis.Api.Controllers.RecomendacaoController.Create(Fidelis.Application.DTOs.RecomendacaoRequest)">
+            <summary>
+            Cria uma nova recomendacao.
+            </summary>
+        </member>
+        <member name="M:Fidelis.Api.Controllers.RecomendacaoController.Update(System.Int32,Fidelis.Application.DTOs.RecomendacaoRequest)">
+            <summary>
+            Atualiza uma recomendacao existente.
+            </summary>
+        </member>
+        <member name="M:Fidelis.Api.Controllers.RecomendacaoController.Patch(System.Int32,Fidelis.Application.DTOs.RecomendacaoPatchRequest)">
+            <summary>
+            Atualiza parcialmente uma recomendacao.
+            </summary>
+        </member>
+        <member name="M:Fidelis.Api.Controllers.RecomendacaoController.Delete(System.Int32)">
+            <summary>
+            Remove uma recomendacao por id.
+            </summary>
+        </member>
+        <member name="M:Fidelis.Api.Controllers.TutorController.GetAll">
+            <summary>
+            Lista tutores cadastrados.
+            </summary>
+        </member>
+        <member name="M:Fidelis.Api.Controllers.TutorController.GetById(System.Int32)">
+            <summary>
+            Busca um tutor por id.
+            </summary>
+        </member>
+        <member name="M:Fidelis.Api.Controllers.TutorController.Create(Fidelis.Application.DTOs.TutorRequest)">
+            <summary>
+            Cria um novo tutor.
+            </summary>
+        </member>
+        <member name="M:Fidelis.Api.Controllers.TutorController.Update(System.Int32,Fidelis.Application.DTOs.TutorRequest)">
+            <summary>
+            Atualiza um tutor existente.
+            </summary>
+        </member>
+        <member name="M:Fidelis.Api.Controllers.TutorController.Patch(System.Int32,Fidelis.Application.DTOs.TutorPatchRequest)">
+            <summary>
+            Atualiza parcialmente um tutor.
+            </summary>
+        </member>
+        <member name="M:Fidelis.Api.Controllers.TutorController.Delete(System.Int32)">
+            <summary>
+            Remove um tutor por id.
+            </summary>
+        </member>
+        <member name="M:Fidelis.Api.Controllers.VacinacaoController.GetAll">
+            <summary>
+            Lista vacinacoes cadastradas.
+            </summary>
+        </member>
+        <member name="M:Fidelis.Api.Controllers.VacinacaoController.GetById(System.Int32)">
+            <summary>
+            Busca uma vacinacao por id.
+            </summary>
+        </member>
+        <member name="M:Fidelis.Api.Controllers.VacinacaoController.Create(Fidelis.Application.DTOs.VacinacaoRequest)">
+            <summary>
+            Cria uma nova vacinacao.
+            </summary>
+        </member>
+        <member name="M:Fidelis.Api.Controllers.VacinacaoController.Update(System.Int32,Fidelis.Application.DTOs.VacinacaoRequest)">
+            <summary>
+            Atualiza uma vacinacao existente.
+            </summary>
+        </member>
+        <member name="M:Fidelis.Api.Controllers.VacinacaoController.Patch(System.Int32,Fidelis.Application.DTOs.VacinacaoPatchRequest)">
+            <summary>
+            Atualiza parcialmente uma vacinacao.
+            </summary>
+        </member>
+        <member name="M:Fidelis.Api.Controllers.VacinacaoController.Delete(System.Int32)">
+            <summary>
+            Remove uma vacinacao por id.
+            </summary>
+        </member>
+        <member name="M:Fidelis.Api.Controllers.VermifugacaoController.GetAll">
+            <summary>
+            Lista vermifugacoes cadastradas.
+            </summary>
+        </member>
+        <member name="M:Fidelis.Api.Controllers.VermifugacaoController.GetById(System.Int32)">
+            <summary>
+            Busca uma vermifugacao por id.
+            </summary>
+        </member>
+        <member name="M:Fidelis.Api.Controllers.VermifugacaoController.Create(Fidelis.Application.DTOs.VermifugacaoRequest)">
+            <summary>
+            Cria uma nova vermifugacao.
+            </summary>
+        </member>
+        <member name="M:Fidelis.Api.Controllers.VermifugacaoController.Update(System.Int32,Fidelis.Application.DTOs.VermifugacaoRequest)">
+            <summary>
+            Atualiza uma vermifugacao existente.
+            </summary>
+        </member>
+        <member name="M:Fidelis.Api.Controllers.VermifugacaoController.Patch(System.Int32,Fidelis.Application.DTOs.VermifugacaoPatchRequest)">
+            <summary>
+            Atualiza parcialmente uma vermifugacao.
+            </summary>
+        </member>
+        <member name="M:Fidelis.Api.Controllers.VermifugacaoController.Delete(System.Int32)">
+            <summary>
+            Remove uma vermifugacao por id.
+            </summary>
+        </member>
+        <member name="M:Fidelis.Api.Controllers.VeterinarioController.GetAll">
+            <summary>
+            Lista veterinarios cadastrados.
+            </summary>
+        </member>
+        <member name="M:Fidelis.Api.Controllers.VeterinarioController.GetById(System.Int32)">
+            <summary>
+            Busca um veterinario por id.
+            </summary>
+        </member>
+        <member name="M:Fidelis.Api.Controllers.VeterinarioController.Create(Fidelis.Application.DTOs.VeterinarioRequest)">
+            <summary>
+            Cria um novo veterinario.
+            </summary>
+        </member>
+        <member name="M:Fidelis.Api.Controllers.VeterinarioController.Update(System.Int32,Fidelis.Application.DTOs.VeterinarioRequest)">
+            <summary>
+            Atualiza um veterinario existente.
+            </summary>
+        </member>
+        <member name="M:Fidelis.Api.Controllers.VeterinarioController.Patch(System.Int32,Fidelis.Application.DTOs.VeterinarioPatchRequest)">
+            <summary>
+            Atualiza parcialmente um veterinario.
+            </summary>
+        </member>
+        <member name="M:Fidelis.Api.Controllers.VeterinarioController.Delete(System.Int32)">
+            <summary>
+            Remove um veterinario por id.
+            </summary>
+        </member>
+        <member name="T:Program">
+            <summary>
+            Auto-generated public partial Program class for top-level statement apps.
+            </summary>
+        </member>
+        <member name="M:Microsoft.AspNetCore.OpenApi.Generated.DocumentationCommentIdHelper.CreateDocumentationId(System.Type)">
+            <summary>
+            Generates a documentation comment ID for a type.
+            Example: T:Namespace.Outer+Inner`1 becomes T:Namespace.Outer.Inner`1
+            </summary>
+        </member>
+        <member name="M:Microsoft.AspNetCore.OpenApi.Generated.DocumentationCommentIdHelper.CreateDocumentationId(System.Reflection.PropertyInfo)">
+            <summary>
+            Generates a documentation comment ID for a property.
+            Example: P:Namespace.ContainingType.PropertyName or for an indexer P:Namespace.ContainingType.Item(System.Int32)
+            </summary>
+        </member>
+        <member name="M:Microsoft.AspNetCore.OpenApi.Generated.DocumentationCommentIdHelper.CreateDocumentationId(System.Type,System.String)">
+            <summary>
+            Generates a documentation comment ID for a property given its container type and property name.
+            Example: P:Namespace.ContainingType.PropertyName
+            </summary>
+        </member>
+        <member name="M:Microsoft.AspNetCore.OpenApi.Generated.DocumentationCommentIdHelper.CreateDocumentationId(System.Reflection.MethodInfo)">
+            <summary>
+            Generates a documentation comment ID for a method (or constructor).
+            For example:
+              M:Namespace.ContainingType.MethodName(ParamType1,ParamType2)~ReturnType
+              M:Namespace.ContainingType.#ctor(ParamType)
+            </summary>
+        </member>
+        <member name="M:Microsoft.AspNetCore.OpenApi.Generated.DocumentationCommentIdHelper.GetTypeDocId(System.Type,System.Boolean,System.Boolean)">
+            <summary>
+            Generates a documentation ID string for a type.
+            This method handles nested types (replacing '+' with '.'),
+            generic types, arrays, pointers, by-ref types, and generic parameters.
+            The <paramref name="includeGenericArguments"/> flag controls whether
+            constructed generic type arguments are emitted, while <paramref name="omitGenericArity"/>
+            controls whether the generic arity marker (e.g. "`1") is appended.
+            </summary>
+        </member>
+        <member name="M:Microsoft.AspNetCore.OpenApi.Generated.DocumentationCommentIdHelper.NormalizeDocId(System.String)">
+            <summary>
+            Normalizes a documentation comment ID to match the compiler-style format.
+            Strips the return type suffix for ordinary methods but retains it for conversion operators.
+            </summary>
+            <param name="docId">The documentation comment ID to normalize.</param>
+            <returns>The normalized documentation comment ID.</returns>
+        </member>
+    </members>
+</doc>

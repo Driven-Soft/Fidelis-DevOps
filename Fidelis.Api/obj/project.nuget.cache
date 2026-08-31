@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "CJn+3+1YStc=",
+  "dgSpecHash": "dvVenyQfWd8=",
   "success": true,
-  "projectFilePath": "C:\\Users\\shhit\\Desktop\\fiap\\challenge-fidelis\\Fidelis-DevOps\\Fidelis.Api\\Fidelis.Api.csproj",
+  "projectFilePath": "C:\\Users\\shhit\\Desktop\\fiap\\2tdspi-2026\\devops\\Fidelis-DevOps\\Fidelis.Api\\Fidelis.Api.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\shhit\\.nuget\\packages\\humanizer\\2.14.1\\humanizer.2.14.1.nupkg.sha512",
     "C:\\Users\\shhit\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",
@@ -101,8 +101,6 @@
     "C:\\Users\\shhit\\.nuget\\packages\\nuget.projectmodel\\6.11.0\\nuget.projectmodel.6.11.0.nupkg.sha512",
     "C:\\Users\\shhit\\.nuget\\packages\\nuget.protocol\\6.11.0\\nuget.protocol.6.11.0.nupkg.sha512",
     "C:\\Users\\shhit\\.nuget\\packages\\nuget.versioning\\6.11.0\\nuget.versioning.6.11.0.nupkg.sha512",
-    "C:\\Users\\shhit\\.nuget\\packages\\oracle.entityframeworkcore\\9.23.60\\oracle.entityframeworkcore.9.23.60.nupkg.sha512",
-    "C:\\Users\\shhit\\.nuget\\packages\\oracle.manageddataaccess.core\\23.6.1\\oracle.manageddataaccess.core.23.6.1.nupkg.sha512",
     "C:\\Users\\shhit\\.nuget\\packages\\pomelo.entityframeworkcore.mysql\\9.0.0\\pomelo.entityframeworkcore.mysql.9.0.0.nupkg.sha512",
     "C:\\Users\\shhit\\.nuget\\packages\\swashbuckle.aspnetcore.annotations\\10.1.7\\swashbuckle.aspnetcore.annotations.10.1.7.nupkg.sha512",
     "C:\\Users\\shhit\\.nuget\\packages\\swashbuckle.aspnetcore.swagger\\10.1.7\\swashbuckle.aspnetcore.swagger.10.1.7.nupkg.sha512",
@@ -117,10 +115,8 @@
     "C:\\Users\\shhit\\.nuget\\packages\\system.composition.typedparts\\7.0.0\\system.composition.typedparts.7.0.0.nupkg.sha512",
     "C:\\Users\\shhit\\.nuget\\packages\\system.configuration.configurationmanager\\8.0.0\\system.configuration.configurationmanager.8.0.0.nupkg.sha512",
     "C:\\Users\\shhit\\.nuget\\packages\\system.data.datasetextensions\\4.5.0\\system.data.datasetextensions.4.5.0.nupkg.sha512",
-    "C:\\Users\\shhit\\.nuget\\packages\\system.diagnostics.performancecounter\\8.0.0\\system.diagnostics.performancecounter.8.0.0.nupkg.sha512",
-    "C:\\Users\\shhit\\.nuget\\packages\\system.directoryservices.protocols\\8.0.0\\system.directoryservices.protocols.8.0.0.nupkg.sha512",
     "C:\\Users\\shhit\\.nuget\\packages\\system.reflection.metadataloadcontext\\8.0.0\\system.reflection.metadataloadcontext.8.0.0.nupkg.sha512",
-    "C:\\Users\\shhit\\.nuget\\packages\\system.security.cryptography.pkcs\\8.0.0\\system.security.cryptography.pkcs.8.0.0.nupkg.sha512",
+    "C:\\Users\\shhit\\.nuget\\packages\\system.security.cryptography.pkcs\\6.0.4\\system.security.cryptography.pkcs.6.0.4.nupkg.sha512",
     "C:\\Users\\shhit\\.nuget\\packages\\system.security.cryptography.protecteddata\\8.0.0\\system.security.cryptography.protecteddata.8.0.0.nupkg.sha512"
   ],
   "logs": [
@@ -128,10 +124,22 @@
       "code": "NU1903",
       "level": "Warning",
       "message": "Package 'Microsoft.Build' 17.10.4 has a known high severity vulnerability, https://github.com/advisories/GHSA-w3q9-fxm7-j8fq",
-      "projectPath": "C:\\Users\\shhit\\Desktop\\fiap\\challenge-fidelis\\Fidelis-DevOps\\Fidelis.Api\\Fidelis.Api.csproj",
+      "projectPath": "C:\\Users\\shhit\\Desktop\\fiap\\2tdspi-2026\\devops\\Fidelis-DevOps\\Fidelis.Api\\Fidelis.Api.csproj",
       "warningLevel": 1,
-      "filePath": "C:\\Users\\shhit\\Desktop\\fiap\\challenge-fidelis\\Fidelis-DevOps\\Fidelis.Api\\Fidelis.Api.csproj",
+      "filePath": "C:\\Users\\shhit\\Desktop\\fiap\\2tdspi-2026\\devops\\Fidelis-DevOps\\Fidelis.Api\\Fidelis.Api.csproj",
       "libraryId": "Microsoft.Build",
+      "targetGraphs": [
+        "net10.0"
+      ]
+    },
+    {
+      "code": "NU1903",
+      "level": "Warning",
+      "message": "Package 'Microsoft.OpenApi' 2.4.1 has a known high severity vulnerability, https://github.com/advisories/GHSA-v5pm-xwqc-g5wc",
+      "projectPath": "C:\\Users\\shhit\\Desktop\\fiap\\2tdspi-2026\\devops\\Fidelis-DevOps\\Fidelis.Api\\Fidelis.Api.csproj",
+      "warningLevel": 1,
+      "filePath": "C:\\Users\\shhit\\Desktop\\fiap\\2tdspi-2026\\devops\\Fidelis-DevOps\\Fidelis.Api\\Fidelis.Api.csproj",
+      "libraryId": "Microsoft.OpenApi",
       "targetGraphs": [
         "net10.0"
       ]
@@ -140,9 +148,9 @@
       "code": "NU1901",
       "level": "Warning",
       "message": "Package 'NuGet.Packaging' 6.11.0 has a known low severity vulnerability, https://github.com/advisories/GHSA-g4vj-cjjj-v7hg",
-      "projectPath": "C:\\Users\\shhit\\Desktop\\fiap\\challenge-fidelis\\Fidelis-DevOps\\Fidelis.Api\\Fidelis.Api.csproj",
+      "projectPath": "C:\\Users\\shhit\\Desktop\\fiap\\2tdspi-2026\\devops\\Fidelis-DevOps\\Fidelis.Api\\Fidelis.Api.csproj",
       "warningLevel": 1,
-      "filePath": "C:\\Users\\shhit\\Desktop\\fiap\\challenge-fidelis\\Fidelis-DevOps\\Fidelis.Api\\Fidelis.Api.csproj",
+      "filePath": "C:\\Users\\shhit\\Desktop\\fiap\\2tdspi-2026\\devops\\Fidelis-DevOps\\Fidelis.Api\\Fidelis.Api.csproj",
       "libraryId": "NuGet.Packaging",
       "targetGraphs": [
         "net10.0"
@@ -152,9 +160,9 @@
       "code": "NU1901",
       "level": "Warning",
       "message": "Package 'NuGet.Protocol' 6.11.0 has a known low severity vulnerability, https://github.com/advisories/GHSA-g4vj-cjjj-v7hg",
-      "projectPath": "C:\\Users\\shhit\\Desktop\\fiap\\challenge-fidelis\\Fidelis-DevOps\\Fidelis.Api\\Fidelis.Api.csproj",
+      "projectPath": "C:\\Users\\shhit\\Desktop\\fiap\\2tdspi-2026\\devops\\Fidelis-DevOps\\Fidelis.Api\\Fidelis.Api.csproj",
       "warningLevel": 1,
-      "filePath": "C:\\Users\\shhit\\Desktop\\fiap\\challenge-fidelis\\Fidelis-DevOps\\Fidelis.Api\\Fidelis.Api.csproj",
+      "filePath": "C:\\Users\\shhit\\Desktop\\fiap\\2tdspi-2026\\devops\\Fidelis-DevOps\\Fidelis.Api\\Fidelis.Api.csproj",
       "libraryId": "NuGet.Protocol",
       "targetGraphs": [
         "net10.0"

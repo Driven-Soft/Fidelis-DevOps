@@ -29,11 +29,14 @@ public static class PersistenceExtensions
 
     public static IServiceCollection AddDbContext(this IServiceCollection services, IConfiguration configuration)
     {
-        var connectionString = configuration.GetConnectionString("FidelisOracle")
-            ?? throw new InvalidOperationException("FidelisOracle connection string is not configured.");
+        var connectionString = configuration.GetConnectionString("FidelisMySql")
+            ?? throw new InvalidOperationException("FidelisMySql connection string is not configured.");
+
+        if (string.IsNullOrWhiteSpace(connectionString))
+            throw new InvalidOperationException("FidelisMySql connection string is empty.");
 
         services.AddDbContext<FidelisContext>(options =>
-            options.UseOracle(connectionString));
+            options.UseMySql(connectionString, ServerVersion.Parse("8.0.0-mysql")));
 
         return services;
     }
