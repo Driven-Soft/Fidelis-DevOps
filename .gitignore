@@ -20,3 +20,6 @@
 
 ### VS Code ###
 .vscode/
+
+_cp_compare/
+.publish/

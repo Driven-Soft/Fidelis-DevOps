@@ -9,13 +9,8 @@ source "$SCRIPT_DIR/00_config_geral.sh"
 
 
 echo "=========================================="
-echo "FIDELIS - DEPLOY DO MYSQL NO ACI"
+echo "FIDELIS - CONFIGURAÇÃO DO MYSQL MANAGED"
 echo "=========================================="
-
-
-# ---------------------------------------------------------
-# Carrega variáveis sensíveis do .env
-# ---------------------------------------------------------
 
 if [ ! -f "$REPO_ROOT/.env" ]; then
     echo "ERRO: arquivo .env não encontrado."
@@ -27,132 +22,59 @@ set -a
 source "$REPO_ROOT/.env"
 set +a
 
-
 if [ -z "${MYSQL_PASSWORD:-}" ]; then
     echo "ERRO: MYSQL_PASSWORD não definida no .env."
     exit 1
 fi
 
-
-# ---------------------------------------------------------
-# Recupera Login Server do ACR
-# ---------------------------------------------------------
-
-ACR_LOGIN_SERVER=$(az acr show \
-    --name "$ACR_NAME" \
+if ! az mysql flexible-server show \
     --resource-group "$RESOURCE_GROUP" \
-    --query loginServer \
-    --output tsv)
+    --name "$MYSQL_SERVER_NAME" &>/dev/null; then
 
-
-# ---------------------------------------------------------
-# Credenciais do ACR
-# Recuperadas em runtime, nunca armazenadas no GitHub.
-# ---------------------------------------------------------
-
-ACR_USERNAME=$(az acr credential show \
-    --name "$ACR_NAME" \
-    --resource-group "$RESOURCE_GROUP" \
-    --query username \
-    --output tsv)
-
-ACR_PASSWORD=$(az acr credential show \
-    --name "$ACR_NAME" \
-    --resource-group "$RESOURCE_GROUP" \
-    --query passwords[0].value \
-    --output tsv)
-
-
-# ---------------------------------------------------------
-# Chave do Storage Account
-# Também recuperada em runtime.
-# ---------------------------------------------------------
-
-STORAGE_KEY=$(az storage account keys list \
-    --resource-group "$RESOURCE_GROUP" \
-    --account-name "$STORAGE_ACCOUNT" \
-    --query "[0].value" \
-    --output tsv)
-
-
-# ---------------------------------------------------------
-# Verifica imagem no ACR
-# ---------------------------------------------------------
-
-if ! az acr repository show \
-    --name "$ACR_NAME" \
-    --repository "$DB_IMAGE" &>/dev/null; then
-
-    echo "ERRO: imagem '$DB_IMAGE' não encontrada no ACR."
-    echo "Execute primeiro: azure/02_push_imagens.sh"
+    echo "ERRO: MySQL Flexible Server '$MYSQL_SERVER_NAME' não encontrado."
+    echo "Execute primeiro: azure/01_criacao_infra.sh"
     exit 1
 fi
 
-
-# ---------------------------------------------------------
-# Caso o ACI já exista, remove somente o container.
-#
-# IMPORTANTE:
-# Storage Account e File Share NÃO são removidos.
-# Assim conseguimos testar persistência posteriormente.
-# ---------------------------------------------------------
-
-if az container show \
+if ! az mysql flexible-server db show \
     --resource-group "$RESOURCE_GROUP" \
-    --name "$DB_ACI" &>/dev/null; then
+    --server-name "$MYSQL_SERVER_NAME" \
+    --database-name "$MYSQL_DATABASE" &>/dev/null; then
 
-    echo "ACI '$DB_ACI' já existe. Removendo instância anterior..."
+    echo "Criando banco '$MYSQL_DATABASE'..."
 
-    az container delete \
+    az mysql flexible-server db create \
         --resource-group "$RESOURCE_GROUP" \
-        --name "$DB_ACI" \
-        --yes
+        --server-name "$MYSQL_SERVER_NAME" \
+        --database-name "$MYSQL_DATABASE" \
+        --output none
 fi
 
-
-# ---------------------------------------------------------
-# Cria o ACI do MySQL
-# ---------------------------------------------------------
-
-echo "Criando ACI MySQL..."
-
-MSYS_NO_PATHCONV=1 az container create \
+if ! az mysql flexible-server firewall-rule show \
     --resource-group "$RESOURCE_GROUP" \
-    --name "$DB_ACI" \
-    --image "$ACR_LOGIN_SERVER/$DB_IMAGE:$TAG" \
-    --cpu 1 \
-    --memory 3 \
-    --os-type Linux \
-    --ip-address Public \
-    --dns-name-label "$DB_DNS" \
-    --ports 3306 \
-    --registry-login-server "$ACR_LOGIN_SERVER" \
-    --registry-username "$ACR_USERNAME" \
-    --registry-password "$ACR_PASSWORD" \
-    --azure-file-volume-account-name "$STORAGE_ACCOUNT" \
-    --azure-file-volume-account-key "$STORAGE_KEY" \
-    --azure-file-volume-share-name "$FILE_SHARE" \
-    --azure-file-volume-mount-path /var/lib/mysql \
-    --secure-environment-variables \
-        MYSQL_DATABASE="fidelis" \
-        MYSQL_USER="fidelis" \
-        MYSQL_PASSWORD="$MYSQL_PASSWORD" \
-        MYSQL_ROOT_PASSWORD="$MYSQL_PASSWORD" \
-    --restart-policy Always
+    --server-name "$MYSQL_SERVER_NAME" \
+    --name "AllowAzureServices" &>/dev/null; then
 
+    echo "Criando regra de firewall 'AllowAzureServices'..."
+
+    az mysql flexible-server firewall-rule create \
+        --resource-group "$RESOURCE_GROUP" \
+        --server-name "$MYSQL_SERVER_NAME" \
+        --name "AllowAzureServices" \
+        --start-ip-address "0.0.0.0" \
+        --end-ip-address "0.0.0.0" \
+        --output none
+fi
+
+MYSQL_FQDN=$(az mysql flexible-server show \
+    --resource-group "$RESOURCE_GROUP" \
+    --name "$MYSQL_SERVER_NAME" \
+    --query fullyQualifiedDomainName \
+    --output tsv)
+
+echo "MySQL Flexible Server disponível em:"
+echo "$MYSQL_FQDN"
 
 echo ""
-echo "=========================================="
-echo "ACI MYSQL CRIADO"
-echo "=========================================="
-
-az container show \
-    --resource-group "$RESOURCE_GROUP" \
-    --name "$DB_ACI" \
-    --query "{Nome:name,Status:instanceView.state,IP:ipAddress.ip,FQDN:ipAddress.fqdn}" \
-    --output table
-
-
-echo ""
-echo "Para acompanhar os logs:"
-echo "az container logs --resource-group $RESOURCE_GROUP --name $DB_ACI"
+echo "Connection string para app service:"
+echo "Server=${MYSQL_FQDN};Port=3306;Database=${MYSQL_DATABASE};User ID=${MYSQL_ADMIN_LOGIN}@${MYSQL_SERVER_NAME};Password=${MYSQL_PASSWORD};Ssl Mode=Required;"

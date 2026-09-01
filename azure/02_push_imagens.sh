@@ -10,118 +10,155 @@ source "$SCRIPT_DIR/00_config_geral.sh"
 cd "$REPO_ROOT"
 
 echo "=========================================="
-echo "FIDELIS - BUILD E PUSH DAS IMAGENS NO ACR"
+echo "FIDELIS - BUILD E DEPLOY DO APP NO AZURE APP SERVICE"
 echo "=========================================="
 
+if [ ! -f "$REPO_ROOT/.env" ]; then
+    echo "ERRO: arquivo .env não encontrado."
+    echo "Crie o .env com MYSQL_PASSWORD=sua_senha."
+    exit 1
+fi
 
-# ---------------------------------------------------------
-# Valida ACR
-# ---------------------------------------------------------
+set -a
+source "$REPO_ROOT/.env"
+set +a
 
-if ! az acr show \
-    --name "$ACR_NAME" \
+if [ -z "${MYSQL_PASSWORD:-}" ]; then
+    echo "ERRO: MYSQL_PASSWORD não definida no .env."
+    exit 1
+fi
+
+if ! az webapp show \
+    --name "$WEBAPP_NAME" \
     --resource-group "$RESOURCE_GROUP" &>/dev/null; then
 
-    echo "ERRO: ACR '$ACR_NAME' não encontrado."
+    echo "ERRO: Web App '$WEBAPP_NAME' não encontrado."
     echo "Execute primeiro: azure/01_criacao_infra.sh"
     exit 1
 fi
 
-
-# ---------------------------------------------------------
-# Login no Azure Container Registry
-# ---------------------------------------------------------
-
-echo "Realizando login no ACR..."
-
-az acr login \
-    --name "$ACR_NAME"
-
-
-# ---------------------------------------------------------
-# Recupera endereço oficial do ACR
-# Exemplo:
-# rm564723fidelisacr.azurecr.io
-# ---------------------------------------------------------
-
-ACR_LOGIN_SERVER=$(az acr show \
-    --name "$ACR_NAME" \
+if ! az mysql flexible-server show \
     --resource-group "$RESOURCE_GROUP" \
-    --query loginServer \
-    --output tsv)
+    --name "$MYSQL_SERVER_NAME" &>/dev/null; then
 
-echo "ACR Login Server: $ACR_LOGIN_SERVER"
+    echo "ERRO: MySQL Flexible Server '$MYSQL_SERVER_NAME' não encontrado."
+    echo "Execute primeiro: azure/01_criacao_infra.sh"
+    exit 1
+fi
 
+PUBLISH_DIR="$REPO_ROOT/.publish/fidelis-api"
+ZIP_PATH="$REPO_ROOT/.publish/fidelis-api.zip"
 
-# ---------------------------------------------------------
-# Build da API
-# ---------------------------------------------------------
+rm -rf "$PUBLISH_DIR" "$ZIP_PATH"
+mkdir -p "$PUBLISH_DIR"
 
-echo ""
-echo "Construindo imagem da API..."
+echo "Publicando a API do Fidelis..."
 
-docker build \
-    -f docker/app/Dockerfile \
-    -t "$APP_IMAGE:$TAG" \
-    .
+dotnet publish Fidelis.Api/Fidelis.Api.csproj \
+    --configuration Release \
+    --output "$PUBLISH_DIR" \
+    --nologo
 
+echo "Compactando a publicação..."
 
-# ---------------------------------------------------------
-# Build do MySQL
-# ---------------------------------------------------------
+if command -v zip &>/dev/null; then
 
-echo ""
-echo "Construindo imagem do MySQL..."
+    cd "$PUBLISH_DIR"
+    zip -r "$ZIP_PATH" .
+    cd "$REPO_ROOT"
 
-docker build \
-    -f docker/database/Dockerfile \
-    -t "$DB_IMAGE:$TAG" \
-    .
+elif command -v powershell.exe &>/dev/null; then
 
+    PUBLISH_DIR_WIN="$(cygpath -w "$PUBLISH_DIR")"
+    ZIP_PATH_WIN="$(cygpath -w "$ZIP_PATH")"
 
-# ---------------------------------------------------------
-# Tags para o ACR
-# ---------------------------------------------------------
+    powershell.exe -NoProfile -Command "
+        Add-Type -AssemblyName System.IO.Compression;
+        Add-Type -AssemblyName System.IO.Compression.FileSystem;
 
-echo ""
-echo "Criando tags para o ACR..."
+        \$source = '$PUBLISH_DIR_WIN';
+        \$destination = '$ZIP_PATH_WIN';
 
-docker tag \
-    "$APP_IMAGE:$TAG" \
-    "$ACR_LOGIN_SERVER/$APP_IMAGE:$TAG"
+        if (Test-Path \$destination) {
+            Remove-Item \$destination -Force
+        }
 
-docker tag \
-    "$DB_IMAGE:$TAG" \
-    "$ACR_LOGIN_SERVER/$DB_IMAGE:$TAG"
+        \$base = (Resolve-Path \$source).Path.TrimEnd('\') + '\';
 
+        \$archive = [System.IO.Compression.ZipFile]::Open(
+            \$destination,
+            [System.IO.Compression.ZipArchiveMode]::Create
+        );
 
-# ---------------------------------------------------------
-# Push API
-# ---------------------------------------------------------
+        try {
+            Get-ChildItem -Path \$source -Recurse -File | ForEach-Object {
 
-echo ""
-echo "Enviando API para o ACR..."
+                \$relative = \$_.FullName.Substring(\$base.Length);
 
-docker push \
-    "$ACR_LOGIN_SERVER/$APP_IMAGE:$TAG"
+                # IMPORTANTE:
+                # converte separador Windows para padrão ZIP/Linux
+                \$relative = \$relative.Replace('\', '/');
 
+                \$entry = \$archive.CreateEntry(
+                    \$relative,
+                    [System.IO.Compression.CompressionLevel]::Optimal
+                );
 
-# ---------------------------------------------------------
-# Push MySQL
-# ---------------------------------------------------------
+                \$entryStream = \$entry.Open();
+                \$fileStream = [System.IO.File]::OpenRead(\$_.FullName);
 
-echo ""
-echo "Enviando MySQL para o ACR..."
+                try {
+                    \$fileStream.CopyTo(\$entryStream);
+                }
+                finally {
+                    \$fileStream.Dispose();
+                    \$entryStream.Dispose();
+                }
+            }
+        }
+        finally {
+            \$archive.Dispose();
+        }
+    "
 
-docker push \
-    "$ACR_LOGIN_SERVER/$DB_IMAGE:$TAG"
+else
+    echo "ERRO: nenhum compactador ZIP disponível."
+    exit 1
+fi
 
+MYSQL_HOST="${MYSQL_SERVER_NAME}.mysql.database.azure.com"
+CONNECTION_STRING="Server=${MYSQL_HOST};Port=3306;Database=${MYSQL_DATABASE};User ID=${MYSQL_ADMIN_LOGIN}@${MYSQL_SERVER_NAME};Password=${MYSQL_PASSWORD};SslMode=Required;"
+
+az webapp config appsettings set \
+    --resource-group "$RESOURCE_GROUP" \
+    --name "$WEBAPP_NAME" \
+    --settings \
+        ASPNETCORE_ENVIRONMENT="Production" \
+        ConnectionStrings__FidelisMySql="$CONNECTION_STRING" \
+    --output none
+
+echo "Fazendo deploy do pacote no App Service..."
+az webapp deploy \
+    --resource-group "$RESOURCE_GROUP" \
+    --name "$WEBAPP_NAME" \
+    --src-path "$ZIP_PATH" \
+    --type zip \
+    --output none \
+    --clean true \
+    --track-status false
+
+az webapp restart \
+    --resource-group "$RESOURCE_GROUP" \
+    --name "$WEBAPP_NAME" \
+    --output none
 
 echo ""
 echo "=========================================="
-echo "IMAGENS REGISTRADAS NO ACR"
+echo "DEPLOY DO APP SERVICE CONCLUÍDO"
 echo "=========================================="
 
-az acr repository list \
-    --name "$ACR_NAME" \
-    --output table
+echo "Swagger disponível em:"
+echo "https://$(az webapp show --resource-group "$RESOURCE_GROUP" --name "$WEBAPP_NAME" --query defaultHostName --output tsv)/swagger"
+
+echo ""
+echo "Conexão MySQL configurada via ConnectionStrings__FidelisMySql"

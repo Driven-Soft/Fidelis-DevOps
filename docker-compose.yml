@@ -19,7 +19,7 @@ services:
     volumes:
       - mysql_data:/var/lib/mysql
 
-    restart: always
+    restart: never
 
   fidelis-api:
     build:
@@ -41,7 +41,7 @@ services:
     command:
       sh -c "sleep 15 && dotnet Fidelis.Api.dll"
 
-    restart: always
+    restart: never
 
 volumes:
   mysql_data:

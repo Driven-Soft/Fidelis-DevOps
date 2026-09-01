@@ -20,3 +20,11 @@ az group delete \
 
 echo ""
 echo "Remoção do Resource Group iniciada."
+
+echo "Aguardando remoção completa do Resource Group..."
+
+az group wait \
+  --name "$RESOURCE_GROUP" \
+  --deleted
+
+echo "Resource Group removido com sucesso."

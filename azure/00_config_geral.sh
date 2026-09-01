@@ -1,33 +1,26 @@
 #!/bin/bash
 
 # =========================================================
-# CONFIGURAÇÕES GERAIS - FIDELIS CHALLENGE ACR/ACI
+# CONFIGURAÇÕES GERAIS - FIDELIS CHALLENGE APP SERVICE
 # =========================================================
 
 RM="rm564723"
 
 RESOURCE_GROUP="rg-${RM}-fidelis-challenge"
-LOCATION="eastus"
+LOCATION="southafricanorth"
 
-# Azure Container Registry
-# Nome deve ser globalmente único e usar apenas letras/números
-ACR_NAME="${RM}fidelisacr"
+# Azure App Service
+APP_SERVICE_PLAN="${RM}-fidelis-plan"
+WEBAPP_NAME="${RM}-fidelis-api"
+APP_RUNTIME="DOTNETCORE|10.0"
 
-# Storage Account
-# Nome deve usar apenas letras minúsculas e números
-STORAGE_ACCOUNT="${RM}fidelisdata"
+# Azure Database for MySQL - Flexible Server
+MYSQL_SERVER_NAME="${RM}-fidelis-mysql"
+MYSQL_DATABASE="fidelis"
+MYSQL_ADMIN_LOGIN="fidelis"
+MYSQL_SKU="Standard_B1ms"
 
-FILE_SHARE="mysql-fidelis-volume"
-
-# Imagens
-APP_IMAGE="${RM}-fidelis-api"
-DB_IMAGE="${RM}-fidelis-mysql"
-TAG="v1"
-
-# Azure Container Instances
-APP_ACI="${RM}-fidelis-api"
-DB_ACI="${RM}-fidelis-mysql"
-
-# DNS públicos
+# Compatibilidade com o código da API
+# A aplicação lê a connection string a partir de ConnectionStrings__FidelisMySql
+# fornecida como variável de ambiente no App Service.
 APP_DNS="${RM}-fidelis-api"
-DB_DNS="${RM}-fidelis-mysql"
