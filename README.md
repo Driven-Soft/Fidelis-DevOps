@@ -39,7 +39,7 @@ A solução foi implementada com a opção correta do desafio: App Service + ban
 - banco em nuvem obrigatório atendido
 - API em App Service atendido
 - infraestrutura criada via Azure CLI atendido
-- DDL em arquivo separado atendido em [db/script_db.sql](db/script_db.sql)
+- DDL em arquivo separado atendido em [db/script_bd.sql](db/script_bd.sql)
 - documentação de execução no README atendido
 
 ## Pré-requisitos
@@ -97,7 +97,7 @@ Esse script cria ou reutiliza:
 ### 2. Publicar e implantar a API
 
 ```bash
-bash azure/02_push_imagens.sh
+bash azure/02_build_deploy.sh
 ```
 
 Esse script:
@@ -108,18 +108,10 @@ Esse script:
 - define o App Setting `ConnectionStrings__FidelisMySql`
 - reinicia a aplicação
 
-### 3. Validar a infraestrutura do banco
+### 3. Remover a infraestrutura
 
 ```bash
-bash azure/03_deploy_database.sh
-```
-
-Esse script serve como validação do MySQL gerenciado e da regra de firewall. Ele verifica se o banco e os acessos estão consistentes.
-
-### 4. Remover a infraestrutura
-
-```bash
-bash azure/05_remocao.sh
+bash azure/03_remocao.sh
 ```
 
 ## Como acessar a aplicação
@@ -162,7 +154,7 @@ docker compose down
 
 ## DDL do banco
 
-A estrutura do banco está no arquivo [db/script_db.sql](db/script_db.sql).
+A estrutura do banco está no arquivo [db/script_bd.sql](db/script_bd.sql).
 
 Esse arquivo foi simplificado para manter apenas os objetos principais do core da solução, atendendo ao requisito do desafio sem incluir estruturas desnecessárias.
 
@@ -183,6 +175,8 @@ Esse arquivo foi simplificado para manter apenas os objetos principais do core d
 
 ## Equipe
 
-- Henrique Cunha Torres, RM: 565119
-- Max Hayashi Batista, RM: 563717
-- Felipe Bezerra Beatriz, RM: 564723
+- Felipe Bezerra Beatrici - RM564723
+- Max Hayashi Batista - RM563717
+- Henrique Cunha Torres - RM565119
+- Yasmin Nathalin Miranda dos Santos - RM561365
+- Lucas da Silva Lima - RM562118

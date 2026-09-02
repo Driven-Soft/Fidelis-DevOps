@@ -152,13 +152,63 @@ az webapp restart \
     --name "$WEBAPP_NAME" \
     --output none
 
+# Aguarda a API ficar disponível
+APP_HOST=$(az webapp show \
+    --resource-group "$RESOURCE_GROUP" \
+    --name "$WEBAPP_NAME" \
+    --query defaultHostName \
+    --output tsv)
+
+APP_URL="https://${APP_HOST}"
+SWAGGER_URL="${APP_URL}/swagger/index.html"
+
+echo ""
+echo "Aguardando inicialização da API..."
+
+MAX_ATTEMPTS=60
+WAIT_SECONDS=10
+ATTEMPT=1
+HTTP_STATUS="000"
+
+while (( ATTEMPT <= MAX_ATTEMPTS )); do
+
+    HTTP_STATUS=$(curl \
+        --location \
+        --silent \
+        --output /dev/null \
+        --write-out "%{http_code}" \
+        --connect-timeout 5 \
+        --max-time 15 \
+        "$SWAGGER_URL" || true)
+
+    if [ "$HTTP_STATUS" = "200" ]; then
+        echo "API disponível com sucesso."
+        break
+    fi
+
+    echo "Aguardando API iniciar... ($ATTEMPT/$MAX_ATTEMPTS) - HTTP $HTTP_STATUS"
+
+    sleep "$WAIT_SECONDS"
+    ((ATTEMPT++))
+done
+
+if [ "$HTTP_STATUS" != "200" ]; then
+    echo ""
+    echo "ERRO: a API não ficou disponível dentro do tempo esperado."
+    echo "Último status HTTP: $HTTP_STATUS"
+    echo ""
+    echo "Para verificar os logs:"
+    echo "az webapp log startup show -g $RESOURCE_GROUP -n $WEBAPP_NAME"
+
+    exit 1
+fi
+
 echo ""
 echo "=========================================="
 echo "DEPLOY DO APP SERVICE CONCLUÍDO"
 echo "=========================================="
-
+echo ""
 echo "Swagger disponível em:"
-echo "https://$(az webapp show --resource-group "$RESOURCE_GROUP" --name "$WEBAPP_NAME" --query defaultHostName --output tsv)/swagger"
-
+echo "${APP_URL}/swagger"
 echo ""
 echo "Conexão MySQL configurada via ConnectionStrings__FidelisMySql"
