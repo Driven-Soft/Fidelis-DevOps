@@ -38,22 +38,22 @@ fi
 
 if ! az mysql flexible-server db show \
     --resource-group "$RESOURCE_GROUP" \
-    --server-name "$MYSQL_SERVER_NAME" \
+    --name "$MYSQL_SERVER_NAME" \
     --database-name "$MYSQL_DATABASE" &>/dev/null; then
 
     echo "Criando banco '$MYSQL_DATABASE'..."
 
     az mysql flexible-server db create \
         --resource-group "$RESOURCE_GROUP" \
-        --server-name "$MYSQL_SERVER_NAME" \
+        --name "$MYSQL_SERVER_NAME" \
         --database-name "$MYSQL_DATABASE" \
         --output none
 fi
 
 if ! az mysql flexible-server firewall-rule show \
     --resource-group "$RESOURCE_GROUP" \
-    --server-name "$MYSQL_SERVER_NAME" \
-    --name "AllowAzureServices" &>/dev/null; then
+    --name "$MYSQL_SERVER_NAME" \
+    --rule-name "AllowAzureServices" &>/dev/null; then
 
     echo "Criando regra de firewall 'AllowAzureServices'..."
 

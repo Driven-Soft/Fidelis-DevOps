@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Fidelis.Domain")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+f3b4080f2a0c7b4884f679c53aa78ac613890ed3")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+23516261b19e242e517f86e321faa0b9ca307db3")]
 [assembly: System.Reflection.AssemblyProductAttribute("Fidelis.Domain")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Fidelis.Domain")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
