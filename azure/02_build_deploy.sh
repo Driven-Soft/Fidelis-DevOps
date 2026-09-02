@@ -127,7 +127,7 @@ else
 fi
 
 MYSQL_HOST="${MYSQL_SERVER_NAME}.mysql.database.azure.com"
-CONNECTION_STRING="Server=${MYSQL_HOST};Port=3306;Database=${MYSQL_DATABASE};User ID=${MYSQL_ADMIN_LOGIN}@${MYSQL_SERVER_NAME};Password=${MYSQL_PASSWORD};SslMode=Required;"
+CONNECTION_STRING="Server=${MYSQL_HOST};Port=3306;Database=${MYSQL_DATABASE};User ID=${MYSQL_ADMIN_LOGIN};Password=${MYSQL_PASSWORD};SslMode=Required;"
 
 az webapp config appsettings set \
     --resource-group "$RESOURCE_GROUP" \

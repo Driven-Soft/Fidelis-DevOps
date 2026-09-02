@@ -59,8 +59,8 @@ if ! az mysql flexible-server firewall-rule show \
 
     az mysql flexible-server firewall-rule create \
         --resource-group "$RESOURCE_GROUP" \
-        --server-name "$MYSQL_SERVER_NAME" \
-        --name "AllowAzureServices" \
+        --name "$MYSQL_SERVER_NAME" \
+        --rule-name "AllowAzureServices" \
         --start-ip-address "0.0.0.0" \
         --end-ip-address "0.0.0.0" \
         --output none
@@ -77,4 +77,4 @@ echo "$MYSQL_FQDN"
 
 echo ""
 echo "Connection string para app service:"
-echo "Server=${MYSQL_FQDN};Port=3306;Database=${MYSQL_DATABASE};User ID=${MYSQL_ADMIN_LOGIN}@${MYSQL_SERVER_NAME};Password=${MYSQL_PASSWORD};Ssl Mode=Required;"
+echo "Server=${MYSQL_FQDN};Port=3306;Database=${MYSQL_DATABASE};User ID=${MYSQL_ADMIN_LOGIN};Password=${MYSQL_PASSWORD};Ssl Mode=Required;"
