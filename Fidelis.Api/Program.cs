@@ -2,6 +2,7 @@ using Fidelis.Api.Exceptions;
 using Fidelis.Api.Extensions;
 
 using Fidelis.Infrastructure.Persistence;
+using Fidelis.Infrastructure.Persistence.Seed;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -31,6 +32,8 @@ using (var scope = app.Services.CreateScope())
     var db = scope.ServiceProvider.GetRequiredService<FidelisContext>();
 
     db.Database.Migrate();
+
+    FidelisDbSeeder.Seed(db);
 }
 
 app.Run();
