@@ -1,0 +1,16 @@
+C:\Users\shhit\Desktop\fiap\2tdspi-2026\devops\Fidelis-DevOps\Fidelis.Application\bin\Debug\net10.0\Fidelis.Application.deps.json
+C:\Users\shhit\Desktop\fiap\2tdspi-2026\devops\Fidelis-DevOps\Fidelis.Application\bin\Debug\net10.0\Fidelis.Application.dll
+C:\Users\shhit\Desktop\fiap\2tdspi-2026\devops\Fidelis-DevOps\Fidelis.Application\bin\Debug\net10.0\Fidelis.Application.pdb
+C:\Users\shhit\Desktop\fiap\2tdspi-2026\devops\Fidelis-DevOps\Fidelis.Application\bin\Debug\net10.0\Fidelis.Domain.dll
+C:\Users\shhit\Desktop\fiap\2tdspi-2026\devops\Fidelis-DevOps\Fidelis.Application\bin\Debug\net10.0\Fidelis.Domain.pdb
+C:\Users\shhit\Desktop\fiap\2tdspi-2026\devops\Fidelis-DevOps\Fidelis.Application\obj\Debug\net10.0\Fidelis.Application.csproj.AssemblyReference.cache
+C:\Users\shhit\Desktop\fiap\2tdspi-2026\devops\Fidelis-DevOps\Fidelis.Application\obj\Debug\net10.0\Fidelis.Application.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\shhit\Desktop\fiap\2tdspi-2026\devops\Fidelis-DevOps\Fidelis.Application\obj\Debug\net10.0\Fidelis.Application.AssemblyInfoInputs.cache
+C:\Users\shhit\Desktop\fiap\2tdspi-2026\devops\Fidelis-DevOps\Fidelis.Application\obj\Debug\net10.0\Fidelis.Application.AssemblyInfo.cs
+C:\Users\shhit\Desktop\fiap\2tdspi-2026\devops\Fidelis-DevOps\Fidelis.Application\obj\Debug\net10.0\Fidelis.Application.csproj.CoreCompileInputs.cache
+C:\Users\shhit\Desktop\fiap\2tdspi-2026\devops\Fidelis-DevOps\Fidelis.Application\obj\Debug\net10.0\Fidelis.Application.sourcelink.json
+C:\Users\shhit\Desktop\fiap\2tdspi-2026\devops\Fidelis-DevOps\Fidelis.Application\obj\Debug\net10.0\Fidelis..D02DB9FA.Up2Date
+C:\Users\shhit\Desktop\fiap\2tdspi-2026\devops\Fidelis-DevOps\Fidelis.Application\obj\Debug\net10.0\Fidelis.Application.dll
+C:\Users\shhit\Desktop\fiap\2tdspi-2026\devops\Fidelis-DevOps\Fidelis.Application\obj\Debug\net10.0\refint\Fidelis.Application.dll
+C:\Users\shhit\Desktop\fiap\2tdspi-2026\devops\Fidelis-DevOps\Fidelis.Application\obj\Debug\net10.0\Fidelis.Application.pdb
+C:\Users\shhit\Desktop\fiap\2tdspi-2026\devops\Fidelis-DevOps\Fidelis.Application\obj\Debug\net10.0\ref\Fidelis.Application.dll

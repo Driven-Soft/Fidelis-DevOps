@@ -1,0 +1,39 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v10.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v10.0": {
+      "Fidelis.Application/1.0.0": {
+        "dependencies": {
+          "Fidelis.Domain": "1.0.0"
+        },
+        "runtime": {
+          "Fidelis.Application.dll": {}
+        }
+      },
+      "Fidelis.Domain/1.0.0": {
+        "runtime": {
+          "Fidelis.Domain.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      }
+    }
+  },
+  "libraries": {
+    "Fidelis.Application/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Fidelis.Domain/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}

@@ -1,24 +1,30 @@
-version: '3.9'
-
 services:
 
-  fidelis-oracle:
-    image: gvenzl/oracle-xe
-    container_name: fidelis-oracle
+  fidelis-mysql:
+    build:
+      context: .
+      dockerfile: docker/database/Dockerfile
+    
+    container_name: fidelis-mysql
 
     ports:
-      - "1521:1521"
+      - "3306:3306"
 
     environment:
-      ORACLE_PASSWORD: fidelis
+      MYSQL_DATABASE: fidelis
+      MYSQL_USER: fidelis
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+      MYSQL_ROOT_PASSWORD: ${MYSQL_PASSWORD}
 
     volumes:
-      - oracle_data:/opt/oracle/oradata
+      - mysql_data:/var/lib/mysql
 
-    restart: always
+    restart: never
 
   fidelis-api:
-    build: .
+    build:
+      context: .
+      dockerfile: docker/app/Dockerfile
 
     container_name: fidelis-api
 
@@ -27,15 +33,15 @@ services:
 
     environment:
       ASPNETCORE_URLS: http://+:8080
-      ConnectionStrings__FidelisOracle: Data Source=fidelis-oracle:1521/XEPDB1;User Id=system;Password=fidelis;
+      ConnectionStrings__FidelisMySql: Server=fidelis-mysql;Port=3306;Database=fidelis;User ID=fidelis;Password=${MYSQL_PASSWORD};
 
     depends_on:
-      - fidelis-oracle
+      - fidelis-mysql
 
     command:
-      sh -c "sleep 40 && dotnet Fidelis.Api.dll"
+      sh -c "sleep 15 && dotnet Fidelis.Api.dll"
 
-    restart: always
+    restart: never
 
 volumes:
-  oracle_data:
+  mysql_data:

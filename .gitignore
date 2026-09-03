@@ -1,8 +1,13 @@
-HELP.md
-target/
-.mvn/wrapper/maven-wrapper.jar
-!**/src/main/**/target/
-!**/src/test/**/target/
+# Credenciais
+.env
+.env.*
+!.env.example
+
+# Api em .NET
+**/bin/
+**/obj/
+*.user
+*.suo
 
 ### STS ###
 .apt_generated
@@ -13,21 +18,9 @@ target/
 .springBeans
 .sts4-cache
 
-### IntelliJ IDEA ###
-.idea
-*.iws
-*.iml
-*.ipr
-
-### NetBeans ###
-/nbproject/private/
-/nbbuild/
-/dist/
-/nbdist/
-/.nb-gradle/
-build/
-!**/src/main/**/build/
-!**/src/test/**/build/
-
 ### VS Code ###
 .vscode/
+
+_cp_compare/
+.publish/
+2TDS Fevereiro - Challenge 2026 - 2º Semestre-10-16.pdf

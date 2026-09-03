@@ -1,0 +1,30 @@
+#!/bin/bash
+
+set -e
+
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+
+source "$SCRIPT_DIR/00_config_geral.sh"
+
+
+echo "=========================================="
+echo "FIDELIS - REMOÇÃO DA INFRAESTRUTURA"
+echo "=========================================="
+
+echo "Resource Group: $RESOURCE_GROUP"
+
+az group delete \
+    --name "$RESOURCE_GROUP" \
+    --yes \
+    --no-wait
+
+echo ""
+echo "Remoção do Resource Group iniciada."
+
+echo "Aguardando remoção completa do Resource Group..."
+
+az group wait \
+  --name "$RESOURCE_GROUP" \
+  --deleted
+
+echo "Resource Group removido com sucesso."

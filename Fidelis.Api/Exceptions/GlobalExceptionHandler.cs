@@ -1,7 +1,6 @@
 using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using MySqlConnector;
-using Oracle.ManagedDataAccess.Client;
 
 namespace Fidelis.Api.Exceptions;
 
@@ -39,7 +38,6 @@ public class GlobalExceptionHandler(
             InvalidOperationException e => (StatusCodes.Status400BadRequest, "Não foi possível concluir a operação", e.Message),
             KeyNotFoundException e => (StatusCodes.Status404NotFound, "Recurso não encontrado", e.Message),
             UnauthorizedAccessException e => (StatusCodes.Status401Unauthorized, "Não autorizado", e.Message),
-            OracleException e => (StatusCodes.Status500InternalServerError, "Banco de dados indisponível", e.Message),
             MySqlException e=> (StatusCodes.Status500InternalServerError, "Banco de dados indisponível", e.Message),
             _ => MapUnhandled(environment, exception)
         };

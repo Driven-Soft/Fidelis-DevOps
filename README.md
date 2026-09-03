@@ -1,264 +1,182 @@
 # Fidelis
 
-## Descrição do Projeto
+## Descrição da solução
 
-O Fidelis é uma solução desenvolvida para auxiliar clínicas veterinárias no acompanhamento contínuo da saúde de animais de estimação, permitindo o gerenciamento de informações clínicas, consultas, vacinas, tratamentos e lembretes preventivos.
+O Fidelis é uma solução para clínicas veterinárias que centraliza o acompanhamento de pets em um único ambiente digital. A plataforma permite registrar e consultar informações de clínica, tutor, veterinário, pet, consultas, exames, vacinas, prescrições, lembretes, histórico de peso e recomendações.
 
-A plataforma busca melhorar a comunicação entre clínica e tutor, promovendo maior fidelização dos clientes e contribuindo para a prevenção de problemas de saúde através do acompanhamento periódico dos pets.
+A ideia da aplicação é melhorar o controle clínico, reduzir falhas operacionais e facilitar a gestão do cuidado do animal, com foco em acompanhamento contínuo e organização da rotina veterinária.
 
-O projeto foi desenvolvido como parte do Challenge FIAP, integrando conceitos de desenvolvimento back-end, banco de dados, arquitetura em nuvem e DevOps.
+## Benefícios para o negócio
 
-## Benefícios para o Negócio
+- centralização da ficha clínica do pet
+- melhor organização de consultas, vacinas e prescrições
+- acompanhamento de histórico de peso e comportamento
+- redução de esquecimentos de tratamentos e lembretes
+- apoio ao relacionamento entre clínica, veterinário e tutor
+- maior rastreabilidade das informações de saúde do animal
 
-- Fidelização de clientes através do acompanhamento contínuo dos pets
-- Redução do abandono de tratamentos e consultas preventivas
-- Centralização das informações clínicas dos animais
-- Melhor organização do histórico veterinário
-- Automatização de lembretes de vacinação e consultas
-- Maior eficiência operacional para clínicas veterinárias
-- Possibilidade de expansão futura para notificações e dashboards analíticos
+## Arquitetura atual
 
-## Arquitetura da Solução
+A solução foi implementada com a opção correta do desafio: App Service + banco em nuvem (PaaS), sem misturar com ACR/ACI.
 
-A solução foi arquitetada utilizando infraestrutura em nuvem na Microsoft Azure, com conteinerização via Docker.
+### Componentes principais
 
-O banco Oracle utiliza volume nomeado Docker para persistência de dados, garantindo que as informações permaneçam armazenadas mesmo após reinicialização ou remoção dos containers.
+- Azure App Service: hospeda a API .NET
+- App Service Plan: define o plano de capacidade do App Service
+- Azure Database for MySQL Flexible Server: banco relacional gerenciado
+- Azure CLI + scripts Bash: provisiona e automatiza a infraestrutura
+- Docker Compose: ambiente local para testes e execução de desenvolvimento
 
-Fluxo macro da arquitetura:
+### Fluxo da arquitetura
 
-Usuário → VM Azure → Containers Docker → API Fidelis → Banco Oracle
+1. O script de infraestrutura cria o Resource Group, App Service Plan, Web App e MySQL Flex Server.
+2. A API é publicada e enviada ao App Service.
+3. A aplicação recebe a connection string como App Setting.
+4. O Web App acessa o MySQL gerenciado e expõe a API pelo Swagger.
 
-O desenho detalhado da arquitetura será disponibilizado na pasta `/docs`.
+## Requisitos atendidos
 
-## Tecnologias Utilizadas
+- banco em nuvem obrigatório atendido
+- API em App Service atendido
+- infraestrutura criada via Azure CLI atendido
+- DDL em arquivo separado atendido em [db/script_bd.sql](db/script_bd.sql)
+- documentação de execução no README atendido
 
-- C# / .NET
-- Banco de Dados Oracle
-- Docker
-- Docker Compose
-- Microsoft Azure
-- Azure CLI
-- GitHub
-- Linux Ubuntu Server
+## Pré-requisitos
 
-## Rotas da API
+- Azure CLI instalado e autenticado
+- conta Azure com permissão para criar Resource Group, App Service e MySQL Flexible Server
+- .NET SDK compatível com o projeto
+- Docker e Docker Compose para execução local
+- Git, Bash ou WSL
 
-### Pets
+## Configuração local
 
-| Método | Rota | Descrição |
-|---|---|---|
-| GET | /pets | Lista todos os pets |
-| GET | /pets/{id} | Busca pet por ID |
-| POST | /pets | Cadastra novo pet |
-| PUT | /pets/{id} | Atualiza pet |
-| DELETE | /pets/{id} | Remove pet |
-
-### Consultas
-
-| Método | Rota | Descrição |
-|---|---|---|
-| GET | /consultas | Lista consultas |
-| POST | /consultas | Agenda consulta |
-
-## Como Executar o Projeto (How To)
-
-### Pré-requisitos
-
-Antes de iniciar, é necessário possuir:
-
-- Docker instalado
-- Azure CLI instalada
-- Conta Microsoft Azure ativa
-- Git instalado
-
----
-
-### 1. Clonar o repositório
+### 1. Clonar e entrar no projeto
 
 ```bash
-git clone https://github.com/Driven-Soft/Fidelis-DevOps.git
-```
-
----
-
-### 2. Acessar a pasta do projeto
-
-```bash
+git clone <url-do-repositorio>
 cd Fidelis-DevOps
 ```
 
----
-
-### 3. Realizar login na Azure
+### 2. Criar o arquivo .env
 
 ```bash
-az login
+cp .env.example .env
 ```
 
----
+Edite o arquivo `.env` com a senha do banco:
 
-### 4. Conceder permissão de execução aos scripts (P/ LINUX)
-
-Em ambientes Linux pode ser necessário conceder permissão de execução aos scripts.
-- Caso esteja utilizando Linux:
-```bash
-chmod +x azure/criacao.sh
-chmod +x azure/remocao.sh
+```dotenv
+MYSQL_PASSWORD=sua_senha
 ```
 
----
-
-### 5. Executar criação da infraestrutura na Azure
+### 3. Permissões dos scripts
 
 ```bash
-./azure/criacao.sh
+chmod +x azure/*.sh
 ```
 
-Esse script realiza:
-- Criação do Resource Group
-- Criação da VNet e Subnet
-- Criação do NSG e regras de firewall
-- Provisionamento da Máquina Virtual Linux
-- Instalação do Docker (os containers são executados em background utilizando o parâmetro -d do Docker Compose)
-- Instalação do Git e Nano
+## Implantação na Azure
 
----
-
-### 6. Obter IP público da Máquina Virtual
+### 1. Criar infraestrutura
 
 ```bash
-az vm show \
-  --resource-group rg-fidelis \
-  --name vm-fidelis \
-  -d \
-  --query publicIps \
-  -o tsv
+bash azure/01_criacao_infra.sh
 ```
 
----
+Esse script cria ou reutiliza:
 
-### 7. Acessar a VM via SSH
+- Resource Group
+- App Service Plan
+- Web App
+- MySQL Flexible Server
+- banco `fidelis`
+- regra de firewall `AllowAzureServices`
+
+### 2. Publicar e implantar a API
 
 ```bash
-ssh azureuser@IP_DA_VM
+bash azure/02_build_deploy.sh
 ```
 
-Exemplo:
+Esse script:
+
+- publica a API com `dotnet publish`
+- compacta a publicação em ZIP
+- faz deploy no App Service
+- define o App Setting `ConnectionStrings__FidelisMySql`
+- reinicia a aplicação
+
+### 3. Remover a infraestrutura
 
 ```bash
-ssh azureuser@20.xxx.xxx.xxx
+bash azure/03_remocao.sh
 ```
 
-Are you sure you want to continue connecting (yes/no/[fingerprint])?
-```
-yes
-```
+## Como acessar a aplicação
 
-Senha padrão definida no script:
+Depois do deploy, o Swagger fica em:
 
 ```text
-Fidelis@2026
+https://<nome-do-webapp>.azurewebsites.net/swagger
 ```
 
----
-
-### 8. Clonar repositório dentro da VM
+Para localizar o host do App Service:
 
 ```bash
-git clone https://github.com/Driven-Soft/Fidelis-DevOps.git
+az webapp show \
+  --resource-group rg-rm564723-fidelis-challenge \
+  --name rm564723-fidelis-api \
+  --query defaultHostName \
+  --output tsv
 ```
 
----
-
-### 9. Acessar pasta do repositório
-
-```bash
-cd Fidelis-DevOps
-```
-
----
-
-### 10. Executar a aplicação com Docker
-
-```bash
-docker compose up -d
-```
-
----
-
-### 11. Aguardar um tempo e testar endpoints (Swagger pelo navegador)
-
-Após executar a aplicação com Docker, aguarde por volta de 1-2 minuto(s) para acessar e testar a API no navegador usando Swagger.
-
-Acessar no navegador:
-```
-http://IP_DA_VM:8080/swagger
-```
-
-E testar endpoints (GET, POST, PUT, DELETE, etc)
-
----
-
-### 12. Remover infraestrutura da Azure
-
-```bash
-./azure/remocao.sh
-```
-
-Esse script remove todos os recursos criados na Azure, e deve ser executado no ambiente local utilizado para provisionar a infraestrutura Azure.
-
----
-
-## Infraestrutura Azure
-
-A infraestrutura do projeto Fidelis foi provisionada utilizando Microsoft Azure através de scripts automatizados com Azure CLI.
-
-Os scripts realizam automaticamente:
-
-- Criação do Resource Group
-- Criação da Virtual Network (VNet)
-- Criação da Subnet
-- Configuração do Network Security Group (NSG)
-- Liberação das portas necessárias
-- Provisionamento de Máquina Virtual Linux Ubuntu
-- Instalação automática do Docker
-- Instalação do Git e Nano
-
-Estrutura criada:
-- VM Ubuntu Server
-- Containers Docker
-- Banco Oracle conteinerizado
-- API Fidelis conteinerizada
-
-Scripts disponíveis:
-- azure/criacao.sh
-- azure/remocao.sh
-
-## Docker
-
-A aplicação Fidelis utiliza conteinerização com Docker para facilitar a execução da API e do banco de dados em ambientes isolados e reproduzíveis.
-
-Os containers são orquestrados utilizando Docker Compose.
-
-Arquivos utilizados:
-- Dockerfile
-- docker-compose.yml
-
-Principais comandos:
+## Execução local com Docker Compose
 
 ```bash
 docker compose build
 docker compose up -d
-docker ps
+docker compose ps
 ```
 
-Os containers executados incluem:
-- API Fidelis
-- Banco de Dados Oracle
+Swagger local:
+
+```text
+http://localhost:8080/swagger
+```
+
+Para encerrar:
+
+```bash
+docker compose down
+```
+
+## DDL do banco
+
+A estrutura do banco está no arquivo [db/script_bd.sql](db/script_bd.sql).
+
+Esse arquivo foi simplificado para manter apenas os objetos principais do core da solução, atendendo ao requisito do desafio sem incluir estruturas desnecessárias.
+
+## Estrutura de scripts Azure
+
+- [azure/00_config_geral.sh](azure/00_config_geral.sh): nomes e variáveis globais
+- [azure/01_criacao_infra.sh](azure/01_criacao_infra.sh): provisiona infra Azure
+- [azure/02_push_imagens.sh](azure/02_push_imagens.sh): publica e deploya a API no App Service
+- [azure/03_deploy_database.sh](azure/03_deploy_database.sh): validação do MySQL gerenciado
+- [azure/05_remocao.sh](azure/05_remocao.sh): remoção do ambiente
+
+## Observações finais
+
+- a solução foi ajustada para a opção correta do challenge: App Service + banco PaaS
+- o banco não fica em container na infraestrutura Azure
+- a API não é executada em container pela Azure na entrega final
+- a arquitetura evita os problemas de compatibilidade de armazenamento/volume que ocorriam com Azure Files em ACI
 
 ## Equipe
-Henrique Cunha Torres, RM: 565119
 
-Max Hayashi Batista, RM: 563717
-
-Felipe Bezerra Beatriz, RM: 564723
+- Felipe Bezerra Beatrici - RM564723
+- Max Hayashi Batista - RM563717
+- Henrique Cunha Torres - RM565119
+- Yasmin Nathalin Miranda dos Santos - RM561365
+- Lucas da Silva Lima - RM562118
