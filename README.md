@@ -17,7 +17,9 @@ A ideia da aplicação é melhorar o controle clínico, reduzir falhas operacion
 
 ## Arquitetura atual
 
-A solução foi implementada com a opção correta do desafio: App Service + banco em nuvem (PaaS), sem misturar com ACR/ACI.
+<img width="1342" height="825" alt="Fidelis Sprint 3 - Desenho drawio" src="https://github.com/user-attachments/assets/e64a557d-f5ad-4190-b9d8-837eb7839a4f" />
+
+A solução foi implementada com o uso de App Service + banco em nuvem (PaaS).
 
 ### Componentes principais
 
@@ -156,7 +158,7 @@ docker compose down
 
 A estrutura do banco está no arquivo [db/script_bd.sql](db/script_bd.sql).
 
-Esse arquivo foi simplificado para manter apenas os objetos principais do core da solução, atendendo ao requisito do desafio sem incluir estruturas desnecessárias.
+Esse arquivo foi simplificado para manter apenas os objetos principais do core da solução, atendendo ao requisito da Sprint sem incluir estruturas desnecessárias.
 
 ## Estrutura de scripts Azure
 
@@ -165,13 +167,6 @@ Esse arquivo foi simplificado para manter apenas os objetos principais do core d
 - [azure/02_push_imagens.sh](azure/02_push_imagens.sh): publica e deploya a API no App Service
 - [azure/03_deploy_database.sh](azure/03_deploy_database.sh): validação do MySQL gerenciado
 - [azure/05_remocao.sh](azure/05_remocao.sh): remoção do ambiente
-
-## Observações finais
-
-- a solução foi ajustada para a opção correta do challenge: App Service + banco PaaS
-- o banco não fica em container na infraestrutura Azure
-- a API não é executada em container pela Azure na entrega final
-- a arquitetura evita os problemas de compatibilidade de armazenamento/volume que ocorriam com Azure Files em ACI
 
 ## Equipe
 
