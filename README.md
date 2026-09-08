@@ -154,7 +154,7 @@ Para encerrar:
 docker compose down
 ```
 
-## Validação dos dados diretamente no MySQL
+## Validação da persistência dos dados diretamente no MySQL
 
 Além dos testes realizados pela API através do Swagger, é possível acessar
 diretamente o banco de dados hospedado no Azure Database for MySQL Flexible
@@ -220,6 +220,50 @@ SHOW TABLES;
 Exemplo para Tutor:
 ```mysql
 SELECT * FROM tutor;
+```
+
+## Verificar persistência dos dados
+
+### Parando o App Service:
+
+Ainda no terminal Bash da Azure, primeiro saia do banco:
+```mysql
+exit;
+```
+
+Depois pare o App Service:
+
+```mysql
+az webapp stop \
+  --resource-group rg-rm564723-fidelis-challenge \
+  --name rm564723-fidelis-api
+```
+
+### Parando o banco:
+```mysql
+az mysql flexible-server stop \
+  --resource-group rg-rm564723-fidelis-challenge \
+  --name rm564723-fidelis-mysql
+```
+
+### Iniciando novamente o banco
+```mysql
+az mysql flexible-server start \
+  --resource-group rg-rm564723-fidelis-challenge \
+  --name rm564723-fidelis-mysql
+```
+
+### Iniciando novamente a API
+```mysql
+az webapp start \
+  --resource-group rg-rm564723-fidelis-challenge \
+  --name rm564723-fidelis-api
+```
+
+### Verificando persistência
+Conecte-se novamente ao banco pelo terminal Bash, selecione o banco fidelis e realize a consulta - exemplo:
+```mysql
+SELECT * FROM TUTORES;
 ```
 
 ## DDL do banco
