@@ -57,7 +57,7 @@ A solução foi implementada com o uso de App Service + banco em nuvem (PaaS).
 ### 1. Clonar e entrar no projeto
 
 ```bash
-git clone <url-do-repositorio>
+git clone https://github.com/Driven-Soft/Fidelis-DevOps.git
 cd Fidelis-DevOps
 ```
 
@@ -121,7 +121,7 @@ bash azure/03_remocao.sh
 Depois do deploy, o Swagger fica em:
 
 ```text
-https://<nome-do-webapp>.azurewebsites.net/swagger
+https://rm564723-fidelis-api.azurewebsites.net/swagger/
 ```
 
 Para localizar o host do App Service:
