@@ -134,6 +134,28 @@ az webapp show \
   --output tsv
 ```
 
+## Acessar banco no terminal / bash
+
+Instanciar arquivo de credenciais para parâmetro da query SQL:
+
+```bash
+source .env
+```
+
+Acessar o banco:
+
+```
+az mysql flexible-server execute \
+  --name rm564723-fidelis-mysql \
+  --admin-user fidelis \
+  --admin-password "$MYSQL_PASSWORD" \
+  --database-name fidelis \
+  --querytext "SELECT * FROM TUTORES;" \
+  --output table
+```
+
+Alterar o parâmetro `--querytext "{query SQL}"` para a query desejada.
+
 ## Execução local com Docker Compose
 
 ```bash
