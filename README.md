@@ -134,28 +134,6 @@ az webapp show \
   --output tsv
 ```
 
-## Acessar banco no terminal / bash
-
-Instanciar arquivo de credenciais para parâmetro da query SQL:
-
-```bash
-source .env
-```
-
-Acessar o banco:
-
-```
-az mysql flexible-server execute \
-  --name rm564723-fidelis-mysql \
-  --admin-user fidelis \
-  --admin-password "$MYSQL_PASSWORD" \
-  --database-name fidelis \
-  --querytext "SELECT * FROM TUTORES;" \
-  --output table
-```
-
-Alterar o parâmetro `--querytext "{query SQL}"` para a query desejada.
-
 ## Execução local com Docker Compose
 
 ```bash
@@ -174,6 +152,74 @@ Para encerrar:
 
 ```bash
 docker compose down
+```
+
+## Validação dos dados diretamente no MySQL
+
+Além dos testes realizados pela API através do Swagger, é possível acessar
+diretamente o banco de dados hospedado no Azure Database for MySQL Flexible
+Server utilizando o Azure Cloud Shell.
+
+Essa validação permite comprovar que as operações realizadas pela API
+(POST, PUT e DELETE) foram efetivamente persistidas no banco de dados.
+
+### 1. Abrir o Azure Cloud Shell
+
+No Portal Azure, clique no botão `>_` localizado na barra superior e selecione
+o terminal **Bash**.
+
+Não é necessário clonar o repositório novamente para essa etapa.
+
+### 2. Baixar o certificado TLS
+
+Execute:
+
+```bash
+wget --no-check-certificate \
+  https://cacerts.digicert.com/DigiCertGlobalRootG2.crt.pem
+```
+
+O certificado DigiCert Global Root G2 é utilizado para estabelecer uma
+conexão TLS segura com o Azure Database for MySQL.
+
+### 3. Conectar ao MySQL
+
+Execute:
+
+```bash
+mysql \
+  -h rm564723-fidelis-mysql.mysql.database.azure.com \
+  -u fidelis \
+  -p \
+  --ssl=true \
+  --ssl-ca=DigiCertGlobalRootG2.crt.pem
+```
+
+A senha será solicitada pelo terminal e não será exibida durante a digitação.
+
+A senha utilizada é a mesma configurada localmente no arquivo .env.
+O arquivo .env não deve ser versionado no GitHub.
+
+Após a conexão, será exibido:
+```
+MySQL [(none)]>
+```
+
+### 4. Selecionar o banco fidelis
+```mysql
+USE fidelis;
+```
+
+Para visualizar as tabelas:
+```mysql
+SHOW TABLES;
+```
+
+### 5. Validar operações realizadas pelo Swagger
+
+Exemplo para Tutor:
+```mysql
+SELECT * FROM tutor;
 ```
 
 ## DDL do banco
