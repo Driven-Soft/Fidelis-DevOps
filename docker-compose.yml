@@ -45,6 +45,7 @@ services:
     environment:
       ASPNETCORE_URLS: http://+:8080
       ConnectionStrings__FidelisMySql: Server=fidelis-mysql;Port=3306;Database=fidelis;User ID=fidelis;Password=${MYSQL_PASSWORD};
+      JWT_KEY: ${JWT_KEY}
 
     depends_on:
       fidelis-mysql:
