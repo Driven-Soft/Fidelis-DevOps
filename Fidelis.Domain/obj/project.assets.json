@@ -14,11 +14,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\shhit\\Desktop\\fiap\\2tdspi-2026\\devops\\Fidelis-DevOps\\Fidelis.Domain\\Fidelis.Domain.csproj",
+      "projectUniqueName": "C:\\Users\\shhit\\Desktop\\fiap\\challenge-fidelis\\sprint 3\\devops\\Fidelis-DevOps\\Fidelis.Domain\\Fidelis.Domain.csproj",
       "projectName": "Fidelis.Domain",
-      "projectPath": "C:\\Users\\shhit\\Desktop\\fiap\\2tdspi-2026\\devops\\Fidelis-DevOps\\Fidelis.Domain\\Fidelis.Domain.csproj",
+      "projectPath": "C:\\Users\\shhit\\Desktop\\fiap\\challenge-fidelis\\sprint 3\\devops\\Fidelis-DevOps\\Fidelis.Domain\\Fidelis.Domain.csproj",
       "packagesPath": "C:\\Users\\shhit\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\shhit\\Desktop\\fiap\\2tdspi-2026\\devops\\Fidelis-DevOps\\Fidelis.Domain\\obj\\",
+      "outputPath": "C:\\Users\\shhit\\Desktop\\fiap\\challenge-fidelis\\sprint 3\\devops\\Fidelis-DevOps\\Fidelis.Domain\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Fidelis.Api")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+75fe3d0a01c72b533aa024e73f5e46857e1a05eb")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+9b1e5d78d34393323d0e3e2c6a7c93f49b4ca389")]
 [assembly: System.Reflection.AssemblyProductAttribute("Fidelis.Api")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Fidelis.Api")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
