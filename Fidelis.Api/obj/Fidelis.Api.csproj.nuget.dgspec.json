@@ -1,24 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\shhit\\Desktop\\fiap\\challenge-fidelis\\sprint 3\\devops\\Fidelis-DevOps\\Fidelis.Api\\Fidelis.Api.csproj": {}
+    "C:\\Users\\Chiemi Hayashi\\Desktop\\programacao\\challenge-fidelis\\Fidelis-DevOps\\Fidelis.Api\\Fidelis.Api.csproj": {}
   },
   "projects": {
-    "C:\\Users\\shhit\\Desktop\\fiap\\challenge-fidelis\\sprint 3\\devops\\Fidelis-DevOps\\Fidelis.Api\\Fidelis.Api.csproj": {
+    "C:\\Users\\Chiemi Hayashi\\Desktop\\programacao\\challenge-fidelis\\Fidelis-DevOps\\Fidelis.Api\\Fidelis.Api.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\shhit\\Desktop\\fiap\\challenge-fidelis\\sprint 3\\devops\\Fidelis-DevOps\\Fidelis.Api\\Fidelis.Api.csproj",
+        "projectUniqueName": "C:\\Users\\Chiemi Hayashi\\Desktop\\programacao\\challenge-fidelis\\Fidelis-DevOps\\Fidelis.Api\\Fidelis.Api.csproj",
         "projectName": "Fidelis.Api",
-        "projectPath": "C:\\Users\\shhit\\Desktop\\fiap\\challenge-fidelis\\sprint 3\\devops\\Fidelis-DevOps\\Fidelis.Api\\Fidelis.Api.csproj",
-        "packagesPath": "C:\\Users\\shhit\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\shhit\\Desktop\\fiap\\challenge-fidelis\\sprint 3\\devops\\Fidelis-DevOps\\Fidelis.Api\\obj\\",
+        "projectPath": "C:\\Users\\Chiemi Hayashi\\Desktop\\programacao\\challenge-fidelis\\Fidelis-DevOps\\Fidelis.Api\\Fidelis.Api.csproj",
+        "packagesPath": "C:\\Users\\Chiemi Hayashi\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Chiemi Hayashi\\Desktop\\programacao\\challenge-fidelis\\Fidelis-DevOps\\Fidelis.Api\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-        ],
         "configFilePaths": [
-          "C:\\Users\\shhit\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Users\\Chiemi Hayashi\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -26,7 +22,6 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -34,11 +29,11 @@
             "framework": "net10.0",
             "targetAlias": "net10.0",
             "projectReferences": {
-              "C:\\Users\\shhit\\Desktop\\fiap\\challenge-fidelis\\sprint 3\\devops\\Fidelis-DevOps\\Fidelis.Application\\Fidelis.Application.csproj": {
-                "projectPath": "C:\\Users\\shhit\\Desktop\\fiap\\challenge-fidelis\\sprint 3\\devops\\Fidelis-DevOps\\Fidelis.Application\\Fidelis.Application.csproj"
+              "C:\\Users\\Chiemi Hayashi\\Desktop\\programacao\\challenge-fidelis\\Fidelis-DevOps\\Fidelis.Application\\Fidelis.Application.csproj": {
+                "projectPath": "C:\\Users\\Chiemi Hayashi\\Desktop\\programacao\\challenge-fidelis\\Fidelis-DevOps\\Fidelis.Application\\Fidelis.Application.csproj"
               },
-              "C:\\Users\\shhit\\Desktop\\fiap\\challenge-fidelis\\sprint 3\\devops\\Fidelis-DevOps\\Fidelis.Infrastructure\\Fidelis.Infrastructure.csproj": {
-                "projectPath": "C:\\Users\\shhit\\Desktop\\fiap\\challenge-fidelis\\sprint 3\\devops\\Fidelis-DevOps\\Fidelis.Infrastructure\\Fidelis.Infrastructure.csproj"
+              "C:\\Users\\Chiemi Hayashi\\Desktop\\programacao\\challenge-fidelis\\Fidelis-DevOps\\Fidelis.Infrastructure\\Fidelis.Infrastructure.csproj": {
+                "projectPath": "C:\\Users\\Chiemi Hayashi\\Desktop\\programacao\\challenge-fidelis\\Fidelis-DevOps\\Fidelis.Infrastructure\\Fidelis.Infrastructure.csproj"
               }
             }
           }
@@ -60,6 +55,10 @@
           "framework": "net10.0",
           "targetAlias": "net10.0",
           "dependencies": {
+            "Microsoft.AspNetCore.Authentication.JwtBearer": {
+              "target": "Package",
+              "version": "[10.0.8, )"
+            },
             "Microsoft.AspNetCore.OpenApi": {
               "target": "Package",
               "version": "[10.0.8, )"
@@ -528,21 +527,17 @@
         }
       }
     },
-    "C:\\Users\\shhit\\Desktop\\fiap\\challenge-fidelis\\sprint 3\\devops\\Fidelis-DevOps\\Fidelis.Application\\Fidelis.Application.csproj": {
+    "C:\\Users\\Chiemi Hayashi\\Desktop\\programacao\\challenge-fidelis\\Fidelis-DevOps\\Fidelis.Application\\Fidelis.Application.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\shhit\\Desktop\\fiap\\challenge-fidelis\\sprint 3\\devops\\Fidelis-DevOps\\Fidelis.Application\\Fidelis.Application.csproj",
+        "projectUniqueName": "C:\\Users\\Chiemi Hayashi\\Desktop\\programacao\\challenge-fidelis\\Fidelis-DevOps\\Fidelis.Application\\Fidelis.Application.csproj",
         "projectName": "Fidelis.Application",
-        "projectPath": "C:\\Users\\shhit\\Desktop\\fiap\\challenge-fidelis\\sprint 3\\devops\\Fidelis-DevOps\\Fidelis.Application\\Fidelis.Application.csproj",
-        "packagesPath": "C:\\Users\\shhit\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\shhit\\Desktop\\fiap\\challenge-fidelis\\sprint 3\\devops\\Fidelis-DevOps\\Fidelis.Application\\obj\\",
+        "projectPath": "C:\\Users\\Chiemi Hayashi\\Desktop\\programacao\\challenge-fidelis\\Fidelis-DevOps\\Fidelis.Application\\Fidelis.Application.csproj",
+        "packagesPath": "C:\\Users\\Chiemi Hayashi\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Chiemi Hayashi\\Desktop\\programacao\\challenge-fidelis\\Fidelis-DevOps\\Fidelis.Application\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-        ],
         "configFilePaths": [
-          "C:\\Users\\shhit\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Users\\Chiemi Hayashi\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -550,7 +545,6 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -558,8 +552,8 @@
             "framework": "net10.0",
             "targetAlias": "net10.0",
             "projectReferences": {
-              "C:\\Users\\shhit\\Desktop\\fiap\\challenge-fidelis\\sprint 3\\devops\\Fidelis-DevOps\\Fidelis.Domain\\Fidelis.Domain.csproj": {
-                "projectPath": "C:\\Users\\shhit\\Desktop\\fiap\\challenge-fidelis\\sprint 3\\devops\\Fidelis-DevOps\\Fidelis.Domain\\Fidelis.Domain.csproj"
+              "C:\\Users\\Chiemi Hayashi\\Desktop\\programacao\\challenge-fidelis\\Fidelis-DevOps\\Fidelis.Domain\\Fidelis.Domain.csproj": {
+                "projectPath": "C:\\Users\\Chiemi Hayashi\\Desktop\\programacao\\challenge-fidelis\\Fidelis-DevOps\\Fidelis.Domain\\Fidelis.Domain.csproj"
               }
             }
           }
@@ -874,21 +868,17 @@
         }
       }
     },
-    "C:\\Users\\shhit\\Desktop\\fiap\\challenge-fidelis\\sprint 3\\devops\\Fidelis-DevOps\\Fidelis.Domain\\Fidelis.Domain.csproj": {
+    "C:\\Users\\Chiemi Hayashi\\Desktop\\programacao\\challenge-fidelis\\Fidelis-DevOps\\Fidelis.Domain\\Fidelis.Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\shhit\\Desktop\\fiap\\challenge-fidelis\\sprint 3\\devops\\Fidelis-DevOps\\Fidelis.Domain\\Fidelis.Domain.csproj",
+        "projectUniqueName": "C:\\Users\\Chiemi Hayashi\\Desktop\\programacao\\challenge-fidelis\\Fidelis-DevOps\\Fidelis.Domain\\Fidelis.Domain.csproj",
         "projectName": "Fidelis.Domain",
-        "projectPath": "C:\\Users\\shhit\\Desktop\\fiap\\challenge-fidelis\\sprint 3\\devops\\Fidelis-DevOps\\Fidelis.Domain\\Fidelis.Domain.csproj",
-        "packagesPath": "C:\\Users\\shhit\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\shhit\\Desktop\\fiap\\challenge-fidelis\\sprint 3\\devops\\Fidelis-DevOps\\Fidelis.Domain\\obj\\",
+        "projectPath": "C:\\Users\\Chiemi Hayashi\\Desktop\\programacao\\challenge-fidelis\\Fidelis-DevOps\\Fidelis.Domain\\Fidelis.Domain.csproj",
+        "packagesPath": "C:\\Users\\Chiemi Hayashi\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Chiemi Hayashi\\Desktop\\programacao\\challenge-fidelis\\Fidelis-DevOps\\Fidelis.Domain\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-        ],
         "configFilePaths": [
-          "C:\\Users\\shhit\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Users\\Chiemi Hayashi\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -896,7 +886,6 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -1216,21 +1205,17 @@
         }
       }
     },
-    "C:\\Users\\shhit\\Desktop\\fiap\\challenge-fidelis\\sprint 3\\devops\\Fidelis-DevOps\\Fidelis.Infrastructure\\Fidelis.Infrastructure.csproj": {
+    "C:\\Users\\Chiemi Hayashi\\Desktop\\programacao\\challenge-fidelis\\Fidelis-DevOps\\Fidelis.Infrastructure\\Fidelis.Infrastructure.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\shhit\\Desktop\\fiap\\challenge-fidelis\\sprint 3\\devops\\Fidelis-DevOps\\Fidelis.Infrastructure\\Fidelis.Infrastructure.csproj",
+        "projectUniqueName": "C:\\Users\\Chiemi Hayashi\\Desktop\\programacao\\challenge-fidelis\\Fidelis-DevOps\\Fidelis.Infrastructure\\Fidelis.Infrastructure.csproj",
         "projectName": "Fidelis.Infrastructure",
-        "projectPath": "C:\\Users\\shhit\\Desktop\\fiap\\challenge-fidelis\\sprint 3\\devops\\Fidelis-DevOps\\Fidelis.Infrastructure\\Fidelis.Infrastructure.csproj",
-        "packagesPath": "C:\\Users\\shhit\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\shhit\\Desktop\\fiap\\challenge-fidelis\\sprint 3\\devops\\Fidelis-DevOps\\Fidelis.Infrastructure\\obj\\",
+        "projectPath": "C:\\Users\\Chiemi Hayashi\\Desktop\\programacao\\challenge-fidelis\\Fidelis-DevOps\\Fidelis.Infrastructure\\Fidelis.Infrastructure.csproj",
+        "packagesPath": "C:\\Users\\Chiemi Hayashi\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Chiemi Hayashi\\Desktop\\programacao\\challenge-fidelis\\Fidelis-DevOps\\Fidelis.Infrastructure\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-        ],
         "configFilePaths": [
-          "C:\\Users\\shhit\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Users\\Chiemi Hayashi\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -1238,7 +1223,6 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -1246,11 +1230,11 @@
             "framework": "net10.0",
             "targetAlias": "net10.0",
             "projectReferences": {
-              "C:\\Users\\shhit\\Desktop\\fiap\\challenge-fidelis\\sprint 3\\devops\\Fidelis-DevOps\\Fidelis.Application\\Fidelis.Application.csproj": {
-                "projectPath": "C:\\Users\\shhit\\Desktop\\fiap\\challenge-fidelis\\sprint 3\\devops\\Fidelis-DevOps\\Fidelis.Application\\Fidelis.Application.csproj"
+              "C:\\Users\\Chiemi Hayashi\\Desktop\\programacao\\challenge-fidelis\\Fidelis-DevOps\\Fidelis.Application\\Fidelis.Application.csproj": {
+                "projectPath": "C:\\Users\\Chiemi Hayashi\\Desktop\\programacao\\challenge-fidelis\\Fidelis-DevOps\\Fidelis.Application\\Fidelis.Application.csproj"
               },
-              "C:\\Users\\shhit\\Desktop\\fiap\\challenge-fidelis\\sprint 3\\devops\\Fidelis-DevOps\\Fidelis.Domain\\Fidelis.Domain.csproj": {
-                "projectPath": "C:\\Users\\shhit\\Desktop\\fiap\\challenge-fidelis\\sprint 3\\devops\\Fidelis-DevOps\\Fidelis.Domain\\Fidelis.Domain.csproj"
+              "C:\\Users\\Chiemi Hayashi\\Desktop\\programacao\\challenge-fidelis\\Fidelis-DevOps\\Fidelis.Domain\\Fidelis.Domain.csproj": {
+                "projectPath": "C:\\Users\\Chiemi Hayashi\\Desktop\\programacao\\challenge-fidelis\\Fidelis-DevOps\\Fidelis.Domain\\Fidelis.Domain.csproj"
               }
             }
           }

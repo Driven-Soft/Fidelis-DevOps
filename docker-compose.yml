@@ -52,9 +52,6 @@ services:
         condition:
           service_healthy
 
-    command:
-      sh -c "sleep 15 && dotnet Fidelis.Api.dll"
-
     restart: no
 
 volumes:

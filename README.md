@@ -73,6 +73,13 @@ Edite o arquivo `.env` com a senha do banco:
 MYSQL_PASSWORD=sua_senha
 ```
 
+E a chave de autenticação para:
+```dotenv
+JWT_KEY=sua_chave_de_autenticacao
+```
+
+Essa chave não possui um valor fixo e pode ser gerada pelo usuário que estiver configurando o ambiente. É recomendado utilizar uma chave aleatória de pelo menos 32 bytes.
+
 ### 3. Permissões dos scripts
 
 ```bash
@@ -276,9 +283,8 @@ Esse arquivo foi simplificado para manter apenas os objetos principais do core d
 
 - [azure/00_config_geral.sh](azure/00_config_geral.sh): nomes e variáveis globais
 - [azure/01_criacao_infra.sh](azure/01_criacao_infra.sh): provisiona infra Azure
-- [azure/02_push_imagens.sh](azure/02_push_imagens.sh): publica e deploya a API no App Service
-- [azure/03_deploy_database.sh](azure/03_deploy_database.sh): validação do MySQL gerenciado
-- [azure/05_remocao.sh](azure/05_remocao.sh): remoção do ambiente
+- [azure/02_build_deploy.sh](azure/02_build_deploy.sh): builda e publica a API no App Service
+- [azure/03_remocao_infra.sh](azure/05_remocao_infra.sh): remoção do ambiente
 
 ## Equipe
 

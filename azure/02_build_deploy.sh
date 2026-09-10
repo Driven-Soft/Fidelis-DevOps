@@ -28,6 +28,11 @@ if [ -z "${MYSQL_PASSWORD:-}" ]; then
     exit 1
 fi
 
+if [ -z "${JWT_KEY:-}" ]; then
+    echo "ERRO: JWT_KEY não definida no .env."
+    exit 1
+fi
+
 if ! az webapp show \
     --name "$WEBAPP_NAME" \
     --resource-group "$RESOURCE_GROUP" &>/dev/null; then
@@ -135,6 +140,7 @@ az webapp config appsettings set \
     --settings \
         ASPNETCORE_ENVIRONMENT="Production" \
         ConnectionStrings__FidelisMySql="$CONNECTION_STRING" \
+        JWT_KEY="$JWT_KEY" \
     --output none
 
 echo "Fazendo deploy do pacote no App Service..."
